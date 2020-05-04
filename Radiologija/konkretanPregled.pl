@@ -1,0 +1,12 @@
+anamneza(pera,[topla_noga]).
+pregled(pera,[arterijski_protok_se_registruje]).
+anamneza(zika,[topla_noga]).
+pregled(zika,[arterijski_protok_se_registruje]).
+anamneza(perica,[otecena_noga]).
+pregled(perica,[arterijski_protok_se_registruje]).
+anamneza(marica,[otecena_noga]).
+pregled(marica,[arterijski_protok_se_ne_registruje]).
+anamneza(ivica,[modra_noga,otecena_noga,topla_noga,povisena_telesna_tempetatura]).
+pregled(ivica,[arterijski_protok_se_registruje]).
+anamneza(jovica,[modra_noga,otecena_noga,topla_noga]).
+pregled(jovica,[arterijski_protok_se_registruje]).
