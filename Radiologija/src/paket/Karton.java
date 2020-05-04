@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
+
+//KOmentar
 public class Karton {
 
 	private JFrame frmRadiolokiElektronskiKarton;

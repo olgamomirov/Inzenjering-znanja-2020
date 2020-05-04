@@ -10,3 +10,7 @@ anamneza(ivica,[modra_noga,otecena_noga,topla_noga,povisena_telesna_tempetatura]
 pregled(ivica,[arterijski_protok_se_registruje]).
 anamneza(jovica,[modra_noga,otecena_noga,topla_noga]).
 pregled(jovica,[arterijski_protok_se_registruje]).
+anamneza(mikica,[topla_noga]).
+pregled(mikica,[arterijski_protok_se_ne_registruje]).
+anamneza(zikica,[topla_noga]).
+pregled(zikica,[arterijski_protok_se_registruje]).
