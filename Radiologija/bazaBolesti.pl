@@ -19,9 +19,9 @@ dijagnosticka_procedura(hasimoto_tireoditis_hipo_faza, [stitasta_zlezda_deformis
 
 
 % KAMEN U ZUCNOJ KESI tj. HOLELITIJAZA, CIR NA 12PALACNOM CREVU tj. ULKUS DUADENUMA
-simptomi(kamen_u_zucnoj_kesi___holelitijaza, [mucnina, gadjenje, neredovna_ishrana, povracanje, gojaznost, bol_ispod_desnog_rebarnog_luka]).
-simptomi(upala_zucne_kese___holecistitis, [mucnina, gadjenje, neredovna_ishrana, povracanje, gojaznost, bol_ispod_desnog_rebarnog_luka]).
-simptomi(cir_na_12palacnom_crevu___ulkus_duadenuma, [mucnina, gadjenje, neredovna_ishrana, povracanje_preradjene_krvi, mrsavost, crna_stolica]).
+simptomi(kamen_u_zucnoj_kesi___holelitijaza, [mucnina, gadjenje, nadimanje, neredovna_ishrana, povracanje, gojaznost, bol_ispod_desnog_rebarnog_luka]).
+simptomi(upala_zucne_kese___holecistitis, [mucnina, gadjenje, nadimanje, neredovna_ishrana, povracanje, gojaznost, bol_ispod_desnog_rebarnog_luka]).
+simptomi(cir_na_12palacnom_crevu___ulkus_duadenuma, [mucnina, gadjenje, nadimanje, neredovna_ishrana, povracanje_preradjene_krvi, mrsavost, crna_stolica]).
 
 
 dijagnosticka_procedura(kamen_u_zucnoj_kesi___holelitijaza, [bela_ovalna_struktura_unutar_zucne_kese]).
