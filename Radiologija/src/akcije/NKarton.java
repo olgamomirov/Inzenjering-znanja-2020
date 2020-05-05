@@ -128,13 +128,13 @@ public class NKarton {
 	    listaDP.add("arterijski_protok_se_registruje");
 	    listaDP.add("arterijski_protok_se_ne_registruje");
 	    
-	    /*
+	   
 	    listaDP.add("stitasta_zlezda_deformisane_konture");
 	    listaDP.add("stitasta_zlezda_uvecana");
 	    listaDP.add("signal_krvnih_sudova_pojacan");
 	    listaDP.add("stitasta_zlezda_smanjena");
 	    listaDP.add("signal_krvnih_sudova_smanjen");
-	    
+	    /* 
 	    listaDP.add("bela_ovalna_struktura_unutar_zucne_kese");
 	    listaDP.add("zid_zucne_kese_raslojen_i_zadebljan");
 	    listaDP.add("prosiren_zeludac_i_12pal_crevo");
@@ -185,24 +185,23 @@ public class NKarton {
 		listaA.add("bleda_noga");
 		listaA.add("bol_u_nozi");
 		listaA.add("povisena_telesna_tempetatura");
-		/*
+		
 		listaA.add("genetski_faktor");
-		listaA.add("povisena_temperatura");
 		listaA.add("bol_u_vratu_u_regiji_stitaste_zlezde");
 		listaA.add("preznojavanje");
 		listaA.add("drhtanje");
 		listaA.add("opadanje_kose");
 		listaA.add("povisen_krvni_pritisak");
 		listaA.add("dekoncentracija");
+		
 		listaA.add("zamor");
 		listaA.add("pospanost");
 		listaA.add("podbulost");
 		listaA.add("pojacano_gojenje");
-		listaA.add("opadanje_kose");
-		listaA.add("nemogucnost_skidanja_kilograma");
+		listaA.add("nemogucnost_skidanja_kila");
 		listaA.add("izostanak_ciklusa");
 		
-		
+		/*
 		listaA.add("mucnina");
 		listaA.add("gadjenje");
 		listaA.add("nadimanje");
