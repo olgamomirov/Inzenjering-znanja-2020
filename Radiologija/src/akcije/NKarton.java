@@ -242,6 +242,47 @@ public class NKarton {
 		});
 		
 		
+		rdbtnUltrazvukBubrega.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+				
+				listaA.add("bolno_mokrenje_krvi");
+				listaA.add("ostar_bol_u_bubreznoj_lozi");
+				listaA.add("povisena_telesna_temperatura");
+				
+				listaA.add("bezbolno_mokrenje_krvi");
+				listaA.add("tup_bol_u_bubreznoj_lozi");
+				
+				listaDP.add("bubreg_je_uvecan");
+				listaDP.add("vidljiva_bela_ovalna_struktura_u_sabirnom_sistemu_bubrega");
+				
+				listaDP.add("bubreg_deformisane_konture");
+				listaDP.add("bubreg_deformisane_konture");
+				listaDP.add("na_bubregu_primetne_izrasline_u_vidu_cvorova");
+				listaDP.add("primetne_izrasline_u_vidu_cvorova_na_sabirnom_sistemu");
+				listaDP.add("cvorovi_su_ekspanzivni_i_heterogeni");
+				
+				listaDP.add("krvni_sudovi_na_rubu_cvora");
+				listaDP.add("nema_kalcifikacija_u_cvoru");
+				listaDP.add("nema_masne_komponente_u_cvoru");
+				
+				listaDP.add("krvni_sudovi_u_centru_cvora");
+				listaDP.add("ima_kalcifikacija_u_cvoru");
+				listaDP.add("ima_masne_komponente_u_cvoru");
+				
+				listaDP.add("cvor_u_bubregu");
+				listaDP.add("cvor_u_bubregu_i_delom_van_bubrega");
+				listaDP.add("limfni_cvorovi_u_neposrednoj_okolini");
+				listaDP.add("udaljene_metastaze");
+			}
+		});
+		
+		
+		
 		rdbtnUltrazvukDojki.addActionListener(new ActionListener() {
 			
 			@Override
