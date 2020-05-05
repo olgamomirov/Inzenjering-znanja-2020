@@ -10,3 +10,5 @@ anamneza(fdfsfsf,[modra_noga]).
 pregled(fdfsfsf,[arterijski_protok_se_registruje]).
 anamneza(dsda,[modra_noga]).
 pregled(dsda,[arterijski_protok_se_registruje]).
+anamneza(ziza,[genetski_faktor]).
+pregled(ziza,[stitasta_zlezda_deformisane_konture]).
