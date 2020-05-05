@@ -22,6 +22,8 @@ import java.awt.Label;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,14 +36,14 @@ import javax.swing.ButtonGroup;
 import java.awt.Toolkit;
 import javax.swing.JTextArea;
 import java.awt.ScrollPane;
+import java.awt.Color;
 
 public class NKarton {
 
 	private JFrame frmKartonPacijenta;
 	private JTextField imeTF;
-	private JTextField prezimeTF;
-	private JTextField textField;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -73,73 +75,173 @@ public class NKarton {
 		frmKartonPacijenta = new JFrame();
 		frmKartonPacijenta.setIconImage(Toolkit.getDefaultToolkit().getImage("lib/caduceus (1).png"));
 		frmKartonPacijenta.setTitle("Karton pacijenta");
-		frmKartonPacijenta.setBounds(100, 100, 450, 713);
+		frmKartonPacijenta.setBounds(100, 100, 644, 836);
 		frmKartonPacijenta.setLocationRelativeTo(null);
+		frmKartonPacijenta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel lblIme = new JLabel("Ime:");
-		lblIme.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		JLabel lblIme = new JLabel("Ime i prezime:");
+		lblIme.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		imeTF = new JTextField();
 		imeTF.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		imeTF.setColumns(10);
 		
-		JLabel lblPrezime = new JLabel("Prezime:");
-		lblPrezime.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		prezimeTF = new JTextField();
-		prezimeTF.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		prezimeTF.setColumns(10);
-		
 		JLabel lblAnamneza = new JLabel("Anamneza:");
-		lblAnamneza.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblAnamneza.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel lblPrimenjenaDijagnostikaProcedura = new JLabel("Primenjena dijagnosti\u010Dka procedura:");
-		lblPrimenjenaDijagnostikaProcedura.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPrimenjenaDijagnostikaProcedura.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panel = new JPanel();
 		
 		JPanel panel_1 = new JPanel();
 		
 		JButton btnOdrediDijagnozu = new JButton("Odredi dijagnozu");
+		btnOdrediDijagnozu.setForeground(new Color(255, 102, 0));
 		
-		btnOdrediDijagnozu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnOdrediDijagnozu.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel lblDijagnoza = new JLabel("Dijagnoza:");
-		lblDijagnoza.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JLabel lblNewLabel = new JLabel("Identifikacioni broj:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		textField.setColumns(10);
+		lblDijagnoza.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel lblNewLabel_1 = new JLabel("Pol:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JTextArea dijagnozaTA = new JTextArea();
 		
+
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("M");
+		buttonGroup_1.add(rdbtnNewRadioButton);
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JRadioButton radioButton = new JRadioButton("\u017D");
+		buttonGroup_1.add(radioButton);
+		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JRadioButton rdbtnUltrazvukDonjihEkstremiteta = new JRadioButton("Ultrazvuk donjih ekstremiteta");
+		rdbtnUltrazvukDonjihEkstremiteta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGroup_2.add(rdbtnUltrazvukDonjihEkstremiteta);
+		rdbtnUltrazvukDonjihEkstremiteta.setActionCommand("donjiekst");
+		
+		JRadioButton rdbtnUltrazvukStitasteZlezde = new JRadioButton("Ultrazvuk \u0161titaste \u017Elezde");
+		rdbtnUltrazvukStitasteZlezde.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGroup_2.add(rdbtnUltrazvukStitasteZlezde);
+		rdbtnUltrazvukStitasteZlezde.setActionCommand("stitz");
+		
+		JRadioButton rdbtnUltrazvukAbdomena = new JRadioButton("Ultrazvuk abdomena");
+		rdbtnUltrazvukAbdomena.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGroup_2.add(rdbtnUltrazvukAbdomena);
+		rdbtnUltrazvukAbdomena.setActionCommand("abd");
+		
+		JLabel lblVrstaPregleda = new JLabel("Vrsta pregleda:");
+		lblVrstaPregleda.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JRadioButton rdbtnUltrazvukBubrega = new JRadioButton("Ultrazvuk bubrega");
+		rdbtnUltrazvukBubrega.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGroup_2.add(rdbtnUltrazvukBubrega);
+		rdbtnUltrazvukBubrega.setActionCommand("bubreg");
+		
+		JRadioButton rdbtnUltrazvukDojki = new JRadioButton("Ultrazvuk dojki");
+		rdbtnUltrazvukDojki.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buttonGroup_2.add(rdbtnUltrazvukDojki);
+		rdbtnUltrazvukDojki.setActionCommand("dojka");
+		
+		
 		List listaDP = new List();
 		listaDP.setMultipleMode(true);
-	    listaDP.add("nekompresibilna_vena");
-	    listaDP.add("protok_krvi_kroz_venu_se_ne_registruje");
-	    listaDP.add("protok_krvi_kroz_venu_se_registruje");
-	    listaDP.add("prosirene_spoljasnje_vene");
-	    listaDP.add("arterijski_protok_se_registruje");
-	    listaDP.add("arterijski_protok_se_ne_registruje");
-	    
-	   
-	    listaDP.add("stitasta_zlezda_deformisane_konture");
-	    listaDP.add("stitasta_zlezda_uvecana");
-	    listaDP.add("signal_krvnih_sudova_pojacan");
-	    listaDP.add("stitasta_zlezda_smanjena");
-	    listaDP.add("signal_krvnih_sudova_smanjen");
-	     
-	    listaDP.add("bela_ovalna_struktura_unutar_zucne_kese");
-	    listaDP.add("zid_zucne_kese_raslojen_i_zadebljan");
-	    listaDP.add("prosiren_zeludac_i_12pal_crevo");
-	    listaDP.add("postoje_limfni_cvorovi_u_okolini_12pal_creva");
-	    listaDP.add("postoji_slobodna_tecnost_u_okolini_12pal_creva");
+		
+		List listaA = new List();
+		listaA.setMultipleMode(true);
+		
+		
+		rdbtnUltrazvukDonjihEkstremiteta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+					listaA.add("noga_svrbi");
+					listaA.add("modra_noga");
+					listaA.add("otecena_noga");
+					listaA.add("osecaj_zatezanja_na_nozi");
+					listaA.add("hladna_noga");
+					listaA.add("topla_noga");
+					listaA.add("bleda_noga");
+					listaA.add("bol_u_nozi");
+					listaA.add("povisena_telesna_tempetatura");
+				
+				    listaDP.add("nekompresibilna_vena");
+				    listaDP.add("protok_krvi_kroz_venu_se_ne_registruje");
+				    listaDP.add("protok_krvi_kroz_venu_se_registruje");
+				    listaDP.add("prosirene_spoljasnje_vene");
+				    listaDP.add("arterijski_protok_se_registruje");
+				    listaDP.add("arterijski_protok_se_ne_registruje");
+			}
+		});
+		
+		rdbtnUltrazvukStitasteZlezde.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+				
+					listaA.add("genetski_faktor");
+					listaA.add("povisena_telesna_tempetatura");
+					listaA.add("bol_u_vratu_u_regiji_stitaste_zlezde");
+					listaA.add("preznojavanje");
+					listaA.add("drhtanje");
+					listaA.add("opadanje_kose");
+					listaA.add("povisen_krvni_pritisak");
+					listaA.add("dekoncentracija");
+					
+					listaA.add("zamor");
+					listaA.add("pospanost");
+					listaA.add("podbulost");
+					listaA.add("pojacano_gojenje");
+					listaA.add("nemogucnost_skidanja_kila");
+					listaA.add("izostanak_ciklusa");
+				 
+				    listaDP.add("stitasta_zlezda_deformisane_konture");
+				    listaDP.add("stitasta_zlezda_uvecana");
+				    listaDP.add("signal_krvnih_sudova_pojacan");
+				    listaDP.add("stitasta_zlezda_smanjena");
+				    listaDP.add("signal_krvnih_sudova_smanjen");
+			}
+		});
+		
+		
+		
+		
+		rdbtnUltrazvukAbdomena.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+					listaA.add("mucnina");
+					listaA.add("gadjenje");
+					listaA.add("nadimanje");
+					listaA.add("neredovna_ishrana");
+					listaA.add("povracanje");
+					listaA.add("gojaznost");
+					listaA.add("bol_ispod_desnog_rebarnog_luka");
+					listaA.add("povracanje_preradjene_krvi");
+					listaA.add("mrsavost");
+					listaA.add("crna_stolica");
+					
+					listaDP.add("bela_ovalna_struktura_unutar_zucne_kese");
+				    listaDP.add("zid_zucne_kese_raslojen_i_zadebljan");
+				    listaDP.add("prosiren_zeludac_i_12pal_crevo");
+				    listaDP.add("postoje_limfni_cvorovi_u_okolini_12pal_creva");
+				    listaDP.add("postoji_slobodna_tecnost_u_okolini_12pal_creva");
+			}
+		});
+		
+		
 	    /*
 	    listaDP.add("vidljiva_ovalna_homogena_ostro_ogranicena_zona");
 	    listaDP.add("signal_krvnih_sudova_nepostojeci_ili_po_rubu");
@@ -174,44 +276,13 @@ public class NKarton {
 		);
 		panel_1.setLayout(gl_panel_1);
 		
-		List listaA = new List();
-		listaA.setMultipleMode(true);
-		listaA.add("noga_svrbi");
-		listaA.add("modra_noga");
-		listaA.add("otecena_noga");
-		listaA.add("osecaj_zatezanja_na_nozi");
-		listaA.add("hladna_noga");
-		listaA.add("topla_noga");
-		listaA.add("bleda_noga");
-		listaA.add("bol_u_nozi");
-		listaA.add("povisena_telesna_tempetatura");
-		
-		listaA.add("genetski_faktor");
-		listaA.add("bol_u_vratu_u_regiji_stitaste_zlezde");
-		listaA.add("preznojavanje");
-		listaA.add("drhtanje");
-		listaA.add("opadanje_kose");
-		listaA.add("povisen_krvni_pritisak");
-		listaA.add("dekoncentracija");
-		
-		listaA.add("zamor");
-		listaA.add("pospanost");
-		listaA.add("podbulost");
-		listaA.add("pojacano_gojenje");
-		listaA.add("nemogucnost_skidanja_kila");
-		listaA.add("izostanak_ciklusa");
 		
 		
-		listaA.add("mucnina");
-		listaA.add("gadjenje");
-		listaA.add("nadimanje");
-		listaA.add("neredovna_ishrana");
-		listaA.add("povracanje");
-		listaA.add("gojaznost");
-		listaA.add("bol_ispod_desnog_rebarnog_luka");
-		listaA.add("povracanje_preradjene_krvi");
-		listaA.add("mrsavost");
-		listaA.add("crna_stolica");
+		
+		
+		
+		
+		
 		/*
 		listaA.add("bolan_cvor_na_dojci");
 		listaA.add("cvor_je_elastican");
@@ -314,80 +385,100 @@ public class NKarton {
 		);
 		panel.setLayout(gl_panel);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("M");
-		buttonGroup.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JRadioButton radioButton = new JRadioButton("\u017D");
-		buttonGroup.add(radioButton);
-		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
 		
 		GroupLayout groupLayout = new GroupLayout(frmKartonPacijenta.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(lblIme)
-						.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPrezime)
-						.addComponent(prezimeTF, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblAnamneza)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-						.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-						.addComponent(btnOdrediDijagnozu)
-						.addComponent(lblDijagnoza)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(103)
+							.addComponent(lblVrstaPregleda)
+							.addContainerGap())
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(rdbtnUltrazvukDojki)
+								.addContainerGap())
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(rdbtnNewRadioButton)
-									.addGap(18)
-									.addComponent(radioButton))
-								.addComponent(lblNewLabel_1)))
-						.addComponent(dijagnozaTA))
-					.addContainerGap(12, Short.MAX_VALUE))
+									.addComponent(rdbtnUltrazvukBubrega)
+									.addContainerGap())
+								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+									.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(rdbtnUltrazvukAbdomena)
+										.addContainerGap())
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(rdbtnUltrazvukStitasteZlezde)
+											.addContainerGap())
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addComponent(rdbtnUltrazvukDonjihEkstremiteta)
+												.addContainerGap())
+											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addGroup(groupLayout.createSequentialGroup()
+													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addComponent(lblIme)
+														.addComponent(lblAnamneza)
+														.addComponent(btnOdrediDijagnozu)
+														.addComponent(lblDijagnoza)
+														.addComponent(lblPrimenjenaDijagnostikaProcedura, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE))
+													.addGap(7)
+													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+														.addGroup(groupLayout.createSequentialGroup()
+															.addComponent(radioButton)
+															.addGap(4)
+															.addComponent(rdbtnNewRadioButton))
+														.addComponent(lblNewLabel_1))
+													.addGap(95))
+												.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+														.addComponent(dijagnozaTA, Alignment.LEADING)
+														.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+													.addContainerGap())))))))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(13)
-					.addComponent(lblIme)
-					.addGap(7)
-					.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(13)
-					.addComponent(lblPrezime)
-					.addGap(7)
-					.addComponent(prezimeTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
+						.addComponent(lblIme)
 						.addComponent(lblNewLabel_1))
 					.addGap(7)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(rdbtnNewRadioButton)
-						.addComponent(radioButton))
-					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(radioButton)
+							.addComponent(rdbtnNewRadioButton)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblVrstaPregleda)
+					.addGap(11)
+					.addComponent(rdbtnUltrazvukDonjihEkstremiteta)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(rdbtnUltrazvukStitasteZlezde)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(rdbtnUltrazvukAbdomena)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(rdbtnUltrazvukBubrega)
+					.addGap(6)
+					.addComponent(rdbtnUltrazvukDojki)
+					.addGap(18)
 					.addComponent(lblAnamneza)
-					.addGap(7)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(13)
-					.addComponent(lblPrimenjenaDijagnostikaProcedura)
-					.addGap(7)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(13)
-					.addComponent(btnOdrediDijagnozu)
-					.addGap(7)
-					.addComponent(lblDijagnoza)
 					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblPrimenjenaDijagnostikaProcedura)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnOdrediDijagnozu)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblDijagnoza)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(dijagnozaTA, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(22))
+					.addContainerGap())
 		);
 		frmKartonPacijenta.getContentPane().setLayout(groupLayout);
 	}
