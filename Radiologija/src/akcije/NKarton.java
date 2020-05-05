@@ -134,13 +134,13 @@ public class NKarton {
 	    listaDP.add("signal_krvnih_sudova_pojacan");
 	    listaDP.add("stitasta_zlezda_smanjena");
 	    listaDP.add("signal_krvnih_sudova_smanjen");
-	    /* 
+	     
 	    listaDP.add("bela_ovalna_struktura_unutar_zucne_kese");
 	    listaDP.add("zid_zucne_kese_raslojen_i_zadebljan");
 	    listaDP.add("prosiren_zeludac_i_12pal_crevo");
 	    listaDP.add("postoje_limfni_cvorovi_u_okolini_12pal_creva");
 	    listaDP.add("postoji_slobodna_tecnost_u_okolini_12pal_creva");
-	    
+	    /*
 	    listaDP.add("vidljiva_ovalna_homogena_ostro_ogranicena_zona");
 	    listaDP.add("signal_krvnih_sudova_nepostojeci_ili_po_rubu");
 	    listaDP.add("iza_cvora_pojacan_ultrazvucni_talas");
@@ -201,7 +201,7 @@ public class NKarton {
 		listaA.add("nemogucnost_skidanja_kila");
 		listaA.add("izostanak_ciklusa");
 		
-		/*
+		
 		listaA.add("mucnina");
 		listaA.add("gadjenje");
 		listaA.add("nadimanje");
@@ -209,10 +209,10 @@ public class NKarton {
 		listaA.add("povracanje");
 		listaA.add("gojaznost");
 		listaA.add("bol_ispod_desnog_rebarnog_luka");
-		listaA.add("povracanje_crnog_sadrzaja_tj_preradjene_krvi");
+		listaA.add("povracanje_preradjene_krvi");
 		listaA.add("mrsavost");
 		listaA.add("crna_stolica");
-		
+		/*
 		listaA.add("bolan_cvor_na_dojci");
 		listaA.add("cvor_je_elastican");
 		listaA.add("bezbolan_cvor_na_dojci");
