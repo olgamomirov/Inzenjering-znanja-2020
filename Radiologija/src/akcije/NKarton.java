@@ -242,22 +242,79 @@ public class NKarton {
 		});
 		
 		
-	    /*
-	    listaDP.add("vidljiva_ovalna_homogena_ostro_ogranicena_zona");
-	    listaDP.add("signal_krvnih_sudova_nepostojeci_ili_po_rubu");
-	    listaDP.add("iza_cvora_pojacan_ultrazvucni_talas");
-	    
-	    listaDP.add("vidljiva_zvezdasta_nehomogena_neostro_ogranicena_zona");
-	    listaDP.add("signal_krvnih_sudova_u_centru_cvora");
-	    listaDP.add("iza_cvora_slabiji_ultrazvucni_talas");
-	    
-	    listaDP.add("prisutni_patoloski_limfni_cvorovi_u_pazuhu");
-	    listaDP.add("udaljene_metastaze");
-	    listaDP.add("cvor_od_10_do_20mm");
-	    listaDP.add("cvor_veci_od_20mm");
-	    */
-	    
-	    
+		rdbtnUltrazvukBubrega.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+				
+				listaA.add("bolno_mokrenje_krvi");
+				listaA.add("ostar_bol_u_bubreznoj_lozi");
+				listaA.add("povisena_telesna_temperatura");
+				
+				listaA.add("bezbolno_mokrenje_krvi");
+				listaA.add("tup_bol_u_bubreznoj_lozi");
+				
+				listaDP.add("bubreg_je_uvecan");
+				listaDP.add("vidljiva_bela_ovalna_struktura_u_sabirnom_sistemu_bubrega");
+				
+				listaDP.add("bubreg_deformisane_konture");
+				listaDP.add("bubreg_deformisane_konture");
+				listaDP.add("na_bubregu_primetne_izrasline_u_vidu_cvorova");
+				listaDP.add("primetne_izrasline_u_vidu_cvorova_na_sabirnom_sistemu");
+				listaDP.add("cvorovi_su_ekspanzivni_i_heterogeni");
+				
+				listaDP.add("krvni_sudovi_na_rubu_cvora");
+				listaDP.add("nema_kalcifikacija_u_cvoru");
+				listaDP.add("nema_masne_komponente_u_cvoru");
+				
+				listaDP.add("krvni_sudovi_u_centru_cvora");
+				listaDP.add("ima_kalcifikacija_u_cvoru");
+				listaDP.add("ima_masne_komponente_u_cvoru");
+				
+				listaDP.add("cvor_u_bubregu");
+				listaDP.add("cvor_u_bubregu_i_delom_van_bubrega");
+				listaDP.add("limfni_cvorovi_u_neposrednoj_okolini");
+				listaDP.add("udaljene_metastaze");
+			}
+		});
+		
+		
+		
+		rdbtnUltrazvukDojki.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaDP.removeAll();
+				listaA.removeAll();
+				
+				listaA.add("bolan_cvor_na_dojci");
+				listaA.add("cvor_je_elastican");
+				listaA.add("bezbolan_cvor_na_dojci");
+				listaA.add("krv_na_bradavici_dojke");
+				listaA.add("cvor_je_pokretan");
+				listaA.add("cvor_je_fiksiran");
+				listaA.add("uvucena_bradavica_na_dojci");
+				listaA.add("jamica_na_dojci_ispod_koje_je_tvrdo");
+				listaA.add("genetski_faktor");
+				
+				listaDP.add("vidljiva_ovalna_homogena_ostro_ogranicena_zona");
+			    listaDP.add("signal_krvnih_sudova_nepostojeci_ili_po_rubu");
+			    listaDP.add("iza_cvora_pojacan_ultrazvucni_talas");
+			    
+			    listaDP.add("vidljiva_zvezdasta_nehomogena_neostro_ogranicena_zona");
+			    listaDP.add("signal_krvnih_sudova_u_centru_cvora");
+			    listaDP.add("iza_cvora_slabiji_ultrazvucni_talas");
+			    
+			    listaDP.add("prisutni_patoloski_limfni_cvorovi_u_pazuhu");
+			    listaDP.add("udaljene_metastaze");
+			    listaDP.add("cvor_od_10_do_20mm");
+			    listaDP.add("cvor_veci_od_20mm");
+			}
+		});
+		 
 	    
 	    
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
@@ -277,22 +334,6 @@ public class NKarton {
 		panel_1.setLayout(gl_panel_1);
 		
 		
-		
-		
-		
-		
-		
-		
-		/*
-		listaA.add("bolan_cvor_na_dojci");
-		listaA.add("cvor_je_elastican");
-		listaA.add("bezbolan_cvor_na_dojci");
-		listaA.add("krv_na_bradavici_dojke");
-		listaA.add("cvor_je_pokretan");
-		listaA.add("cvor_je_fiksiran");
-		listaA.add("uvucena_bradavica_na_dojci");
-		listaA.add("jamica_na_dojci_ispod_koje_je_tvrdo");
-		*/
 
 		btnOdrediDijagnozu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
