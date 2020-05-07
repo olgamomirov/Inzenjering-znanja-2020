@@ -387,10 +387,11 @@ public class NKarton {
 				Query    q = new Query("dijagnoza", arg);
 				
 				String dijagnoza="";
+				listDijagnoza.removeAll();
 				while (q.hasMoreElements()){
 					Term bound_to_dijagnoza = (Term) ((Hashtable) q.nextElement()).get("Dijagnoza");
 					System.out.println(bound_to_dijagnoza);
-					dijagnoza=bound_to_dijagnoza.toString()+"\n";
+					dijagnoza=bound_to_dijagnoza.toString();
 					listDijagnoza.add(dijagnoza);
 					
 					 }
@@ -404,6 +405,14 @@ public class NKarton {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				Query q1 =
+					    new Query(
+					        "consult",
+					        new Term[] {new Atom("bazaBolesti.pl")}
+					    );
+					System.out.println( "consult " + (q1.query() ? "succeeded" : "failed"));
+			
 				
 				Query q2 =
 					    new Query(
@@ -424,22 +433,19 @@ public class NKarton {
 
 				System.out.println( listDijagnoza.getSelectedItem().toString());
 				
-				Variable Z = new Variable("Z");
-				Term arg[] = {new Atom(listDijagnoza.getSelectedItem().toString()), Z };
+				Variable DaljaIspitivanja = new Variable("DaljaIspitivanja");
+				Term arg[] = {new Atom(imeTF.getText()),new Atom(listDijagnoza.getSelectedItem().toString()), DaljaIspitivanja };
 				Query    q = new Query("dalja_ispitivanja_zakljucak", arg);
 				
 				
-				
-				java.util.Hashtable solution;
-
-				solution = q.oneSolution();
-				textAreaDI.setText(solution.get(Z).toString());
-				
+				String daljispt="";
+				while (q.hasMoreElements()){
+					Term bound_to_dijagnoza = (Term) ((Hashtable) q.nextElement()).get("DaljaIspitivanja");
+					System.out.println(bound_to_dijagnoza);
+					daljispt=bound_to_dijagnoza.toString()+"\n";
+					textAreaDI.setText(daljispt);
 					
-					
-					 
-			
-				
+					 }														
 			}
 		});
 		
@@ -472,12 +478,14 @@ public class NKarton {
 		
 		
 		
+		
 		GroupLayout groupLayout = new GroupLayout(frmKartonPacijenta.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						
 						.addComponent(btnOdrediDijagnozu)
 						.addComponent(rdbtnUltrazvukDojki)
 						.addComponent(rdbtnUltrazvukBubrega)
@@ -492,16 +500,15 @@ public class NKarton {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-									.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-									.addComponent(lblAnamneza, Alignment.LEADING))
+								.addComponent(panel, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+								.addComponent(lblAnamneza)
 								.addComponent(lblDijagnoza))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblDaljaIspitivanja)
-								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))))
+								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -544,7 +551,9 @@ public class NKarton {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 66, Short.MAX_VALUE))
-					.addContainerGap(132, Short.MAX_VALUE))
+					.addGap(18)
+					
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
 		
 		
