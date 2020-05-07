@@ -440,9 +440,9 @@ public class NKarton {
 				
 				String daljispt="";
 				while (q.hasMoreElements()){
-					Term bound_to_dijagnoza = (Term) ((Hashtable) q.nextElement()).get("DaljaIspitivanja");
-					System.out.println(bound_to_dijagnoza);
-					daljispt=bound_to_dijagnoza.toString()+"\n";
+					Term bound_to_dalja_ispitivanja = (Term) ((Hashtable) q.nextElement()).get("DaljaIspitivanja");
+					System.out.println(bound_to_dalja_ispitivanja);
+					daljispt=bound_to_dalja_ispitivanja.toString()+"\n";
 					textAreaDI.setText(daljispt);
 					
 					 }														
