@@ -37,6 +37,8 @@ import java.awt.Toolkit;
 import javax.swing.JTextArea;
 import java.awt.ScrollPane;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class NKarton {
 
@@ -75,7 +77,7 @@ public class NKarton {
 		frmKartonPacijenta = new JFrame();
 		frmKartonPacijenta.setIconImage(Toolkit.getDefaultToolkit().getImage("lib/caduceus (1).png"));
 		frmKartonPacijenta.setTitle("Karton pacijenta");
-		frmKartonPacijenta.setBounds(100, 100, 644, 836);
+		frmKartonPacijenta.setBounds(100, 100, 682, 664);
 		frmKartonPacijenta.setLocationRelativeTo(null);
 		frmKartonPacijenta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -103,20 +105,6 @@ public class NKarton {
 		
 		JLabel lblDijagnoza = new JLabel("Dijagnoza:");
 		lblDijagnoza.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
-		JLabel lblNewLabel_1 = new JLabel("Pol:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
-		JTextArea dijagnozaTA = new JTextArea();
-		
-
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("M");
-		buttonGroup_1.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JRadioButton radioButton = new JRadioButton("\u017D");
-		buttonGroup_1.add(radioButton);
-		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JRadioButton rdbtnUltrazvukDonjihEkstremiteta = new JRadioButton("Ultrazvuk donjih ekstremiteta");
 		rdbtnUltrazvukDonjihEkstremiteta.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -153,6 +141,7 @@ public class NKarton {
 		List listaA = new List();
 		listaA.setMultipleMode(true);
 		
+		JTextArea textAreaDI = new JTextArea();
 		
 		rdbtnUltrazvukDonjihEkstremiteta.addActionListener(new ActionListener() {
 			
@@ -177,6 +166,7 @@ public class NKarton {
 				    listaDP.add("prosirene_spoljasnje_vene");
 				    listaDP.add("arterijski_protok_se_registruje");
 				    listaDP.add("arterijski_protok_se_ne_registruje");
+				  
 			}
 		});
 		
@@ -209,6 +199,7 @@ public class NKarton {
 				    listaDP.add("signal_krvnih_sudova_pojacan");
 				    listaDP.add("stitasta_zlezda_smanjena");
 				    listaDP.add("signal_krvnih_sudova_smanjen");
+				   
 			}
 		});
 		
@@ -319,10 +310,10 @@ public class NKarton {
 	    
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
-					.addComponent(listaDP, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-					.addContainerGap())
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addComponent(listaDP, GroupLayout.PREFERRED_SIZE, 295, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -333,11 +324,11 @@ public class NKarton {
 		);
 		panel_1.setLayout(gl_panel_1);
 		
+		List listDijagnoza = new List();
 		
 
 		btnOdrediDijagnozu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dijagnozaTA.setText("");
 				File file = new File("konkretanPregled.pl");
 	    	    FileWriter fr;
 				try {
@@ -400,7 +391,7 @@ public class NKarton {
 					Term bound_to_dijagnoza = (Term) ((Hashtable) q.nextElement()).get("Dijagnoza");
 					System.out.println(bound_to_dijagnoza);
 					dijagnoza=bound_to_dijagnoza.toString()+"\n";
-					dijagnozaTA.append(dijagnoza);
+					listDijagnoza.add(dijagnoza);
 					
 					 }
 			
@@ -409,22 +400,76 @@ public class NKarton {
 			}
 		});
 		
+		listDijagnoza.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Query q2 =
+					    new Query(
+					        "consult",
+					        new Term[] {new Atom("dijagnoza.pl")}
+					    );	
+				System.out.println( "konsultovao dijagnoza.pl");
+				
+				Query q3 =
+					    new Query(
+					        "consult",
+					        new Term[] {new Atom("konkretanPregled.pl")}
+					    );
+				
+				System.out.println( "konsultovao konkretanpregled.pl");
+				
+				
+
+				System.out.println( listDijagnoza.getSelectedItem().toString());
+				
+				Variable Z = new Variable("Z");
+				Term arg[] = {new Atom(listDijagnoza.getSelectedItem().toString()), Z };
+				Query    q = new Query("dalja_ispitivanja_zakljucak", arg);
+				
+				
+				
+				java.util.Hashtable solution;
+
+				solution = q.oneSolution();
+				textAreaDI.setText(solution.get(Z).toString());
+				
+					
+					
+					 
+			
+				
+			}
+		});
+		
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel.createSequentialGroup()
-					.addComponent(listaA, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(listaA, GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(5)
-					.addComponent(listaA, GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+					.addComponent(listaA, GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
+		
+		JLabel lblDaljaIspitivanja = new JLabel("Dalja ispitivanja:");
+		lblDaljaIspitivanja.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblDaljaIspitivanja.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JPanel panel_2 = new JPanel();
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(Color.GRAY));
+		
+		
 		
 		
 		GroupLayout groupLayout = new GroupLayout(frmKartonPacijenta.getContentPane());
@@ -433,94 +478,103 @@ public class NKarton {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnOdrediDijagnozu)
+						.addComponent(rdbtnUltrazvukDojki)
+						.addComponent(rdbtnUltrazvukBubrega)
+						.addComponent(lblVrstaPregleda)
+						.addComponent(rdbtnUltrazvukDonjihEkstremiteta)
+						.addComponent(rdbtnUltrazvukStitasteZlezde)
+						.addComponent(rdbtnUltrazvukAbdomena)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblVrstaPregleda)
-							.addContainerGap())
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(rdbtnUltrazvukDojki)
-								.addContainerGap())
+							.addComponent(lblIme)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(imeTF, 381, 381, 381))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+									.addComponent(lblAnamneza, Alignment.LEADING))
+								.addComponent(lblDijagnoza))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(rdbtnUltrazvukBubrega)
-									.addContainerGap())
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addGroup(groupLayout.createSequentialGroup()
-										.addComponent(rdbtnUltrazvukAbdomena)
-										.addContainerGap())
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(rdbtnUltrazvukStitasteZlezde)
-											.addContainerGap())
-										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-											.addGroup(groupLayout.createSequentialGroup()
-												.addComponent(rdbtnUltrazvukDonjihEkstremiteta)
-												.addContainerGap())
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addGroup(groupLayout.createSequentialGroup()
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblIme)
-														.addComponent(lblAnamneza)
-														.addComponent(btnOdrediDijagnozu)
-														.addComponent(lblDijagnoza)
-														.addComponent(lblPrimenjenaDijagnostikaProcedura, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE))
-													.addGap(7)
-													.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-														.addGroup(groupLayout.createSequentialGroup()
-															.addComponent(radioButton)
-															.addGap(4)
-															.addComponent(rdbtnNewRadioButton))
-														.addComponent(lblNewLabel_1))
-													.addGap(95))
-												.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-													.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-														.addComponent(dijagnozaTA, Alignment.LEADING)
-														.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(panel_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
-													.addContainerGap())))))))))
+								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblDaljaIspitivanja)
+								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))))
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(13)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblIme)
-						.addComponent(lblNewLabel_1))
-					.addGap(7)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(radioButton)
-							.addComponent(rdbtnNewRadioButton)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblVrstaPregleda)
-					.addGap(11)
-					.addComponent(rdbtnUltrazvukDonjihEkstremiteta)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(rdbtnUltrazvukStitasteZlezde)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(13)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblIme)
+								.addComponent(imeTF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(7)
+							.addComponent(lblVrstaPregleda)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rdbtnUltrazvukDonjihEkstremiteta))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(93)
+							.addComponent(rdbtnUltrazvukStitasteZlezde)))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnUltrazvukAbdomena)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnUltrazvukBubrega)
-					.addGap(6)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnUltrazvukDojki)
-					.addGap(18)
-					.addComponent(lblAnamneza)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblAnamneza)
+						.addComponent(lblPrimenjenaDijagnostikaProcedura))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblPrimenjenaDijagnostikaProcedura)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnOdrediDijagnozu)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(lblDijagnoza)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(dijagnozaTA, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblDijagnoza)
+						.addComponent(lblDaljaIspitivanja))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 66, Short.MAX_VALUE))
+					.addContainerGap(132, Short.MAX_VALUE))
+		);
+		
+		
+		
+		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
+		gl_panel_3.setHorizontalGroup(
+			gl_panel_3.createParallelGroup(Alignment.TRAILING)
+				.addComponent(textAreaDI, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+		);
+		gl_panel_3.setVerticalGroup(
+			gl_panel_3.createParallelGroup(Alignment.LEADING)
+				.addComponent(textAreaDI, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+		);
+		panel_3.setLayout(gl_panel_3);
+		
+		
+		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
+		gl_panel_2.setHorizontalGroup(
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
+					.addComponent(listDijagnoza, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
 					.addContainerGap())
 		);
+		gl_panel_2.setVerticalGroup(
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+					.addComponent(listDijagnoza, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		panel_2.setLayout(gl_panel_2);
 		frmKartonPacijenta.getContentPane().setLayout(groupLayout);
 	}
 }
