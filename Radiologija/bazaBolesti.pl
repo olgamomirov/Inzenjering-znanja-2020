@@ -7,6 +7,9 @@ dijagnosticka_procedura(duboka_venska_tromboza, [nekompresibilna_vena, protok_kr
 dijagnosticka_procedura(embolija, [protok_krvi_kroz_venu_se_ne_registruje, arterijski_protok_se_ne_registruje]).
 dijagnosticka_procedura(erizipel, [protok_krvi_kroz_venu_se_registruje, arterijski_protok_se_registruje, prosirene_spoljasnje_vene]).
 
+dalja_ispitivanja(duboka_venska_tromboza,vaskularni_hirurg).
+dalja_ispitivanja(embolija, vaskularni_hirurg).
+dalja_ispitivanja(erizipel, infektolog).
 
 
 % HASIMOTO TIREODITIS
