@@ -16,6 +16,9 @@ dalja_ispitivanja(erizipel, infektolog).
 simptomi(hasimoto_tireoditis_hiper_faza, [genetski_faktor, povisena_telesna_tempetatura, bol_u_vratu_u_regiji_stitaste_zlezde, preznojavanje, drhtanje, opadanje_kose, povisen_krvni_pritisak, dekoncentracija]).
 simptomi(hasimoto_tireoditis_hipo_faza, [genetski_faktor, zamor, pospanost, podbulost, pojacano_gojenje, nemogucnost_skidanja_kila, izostanak_ciklusa]).
 
+dalja_ispitivanja(hasimoto_tireoditis_hiper_faza,endokrinolog).
+dalja_ispitivanja(hasimoto_tireoditis_hipo_faza,endokrinolog).
+
 
 dijagnosticka_procedura(hasimoto_tireoditis_hiper_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_uvecana, signal_krvnih_sudova_pojacan]).
 dijagnosticka_procedura(hasimoto_tireoditis_hipo_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_smanjena, signal_krvnih_sudova_smanjen]).
@@ -30,6 +33,11 @@ simptomi(cir_na_12palacnom_crevu___ulkus_duadenuma, [mucnina, gadjenje, nadimanj
 dijagnosticka_procedura(kamen_u_zucnoj_kesi___holelitijaza, [bela_ovalna_struktura_unutar_zucne_kese]).
 dijagnosticka_procedura(upala_zucne_kese___holecistitis, [bela_ovalna_struktura_unutar_zucne_kese, zid_zucne_kese_raslojen_i_zadebljan]).
 dijagnosticka_procedura(cir_na_12palacnom_crevu___ulkus_duadenuma, [prosiren_zeludac_i_12pal_crevo, postoje_limfni_cvorovi_u_okolini_12pal_creva, postoji_slobodna_tecnost_u_okolini_12pal_creva]).
+
+dalja_ispitivanja(kamen_u_zucnoj_kesi___holelitijaza ,hirurg).
+dalja_ispitivanja(upala_zucne_kese___holecistitis, hirurg).
+dalja_ispitivanja(cir_na_12palacnom_crevu___ulkus_duadenuma ,gastroenterolog).
+
 
 % BOLESTI DOJKE  CISTE , BENIGNI / MALIGNI TUMOR
 simptomi(cista_na_dojci, [bolan_cvor_na_dojci, cvor_je_elastican]).
@@ -51,6 +59,15 @@ dijagnosticka_procedura(maligni_tumor_dojke_faza2, [vidljiva_zvezdasta_nehomogen
 dijagnosticka_procedura(maligni_tumor_dojke_faza3, [vidljiva_zvezdasta_nehomogena_neostro_ogranicena_zona, signal_krvnih_sudova_u_centru_cvora, iza_cvora_slabiji_ultrazvucni_talas, prisutni_patoloski_limfni_cvorovi_u_pazuhu]).
 dijagnosticka_procedura(maligni_tumor_dojke_faza4, [vidljiva_zvezdasta_nehomogena_neostro_ogranicena_zona, signal_krvnih_sudova_u_centru_cvora, iza_cvora_slabiji_ultrazvucni_talas, udaljene_metastaze]).
 
+dalja_ispitivanja(cista_na_dojci, hirurg).
+dalja_ispitivanja(benigni_tumor_dojke, hirurg).
+dalja_ispitivanja(maligni_tumor_dojke, hirurg).
+dalja_ispitivanja(maligni_tumor_dojke_faza1, hirurg).
+dalja_ispitivanja(maligni_tumor_dojke_faza2, hirurg).
+dalja_ispitivanja(maligni_tumor_dojke_faza3, hirurg).
+dalja_ispitivanja(maligni_tumor_dojke_faza4, hirurg).
+
+
 % BOLESTI BUBREGA tj. MALIGNI / BENIGNI TUMOR,  KAMEN 
 simptomi(kamen_u_bubregu, [bolno_mokrenje_krvi, ostar_bol_u_bubreznoj_lozi, povisena_telesna_temperatura]).
 simptomi(benigni_tumor_bubrega, [bezbolno_mokrenje_krvi, tup_bol_u_bubreznoj_lozi]).
@@ -71,4 +88,10 @@ dijagnosticka_procedura(maligni_tumor_bubrega_faza2, [bubreg_je_uvecan, bubreg_d
 dijagnosticka_procedura(maligni_tumor_bubrega_faza3, [bubreg_je_uvecan, bubreg_deformisane_konture, na_bubregu_primetne_izrasline_u_vidu_cvorova, primetne_izrasline_u_vidu_cvorova_na_sabirnom_sistemu, cvorovi_su_ekspanzivni_i_heterogeni, krvni_sudovi_u_centru_cvora, ima_kalcifikacija_u_cvoru, ima_masne_komponente_u_cvoru, limfni_cvorovi_u_neposrednoj_okolini]).
 dijagnosticka_procedura(maligni_tumor_bubrega_faza4, [bubreg_je_uvecan, bubreg_deformisane_konture, na_bubregu_primetne_izrasline_u_vidu_cvorova, primetne_izrasline_u_vidu_cvorova_na_sabirnom_sistemu, cvorovi_su_ekspanzivni_i_heterogeni, krvni_sudovi_u_centru_cvora, ima_kalcifikacija_u_cvoru, ima_masne_komponente_u_cvoru, udaljene_metastaze]).
 
-
+dalja_ispitivanja(kamen_u_bubregu, urolog).
+dalja_ispitivanja(benigni_tumor_bubrega, urolog).
+dalja_ispitivanja(maligni_tumor_bubrega, urolog).
+dalja_ispitivanja(maligni_tumor_bubrega_faza1, urolog).
+dalja_ispitivanja(maligni_tumor_bubrega_faza2, urolog).
+dalja_ispitivanja(maligni_tumor_bubrega_faza3, urolog).
+dalja_ispitivanja(maligni_tumor_bubrega_faza4, urolog).
