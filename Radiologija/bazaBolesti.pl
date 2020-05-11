@@ -11,17 +11,25 @@ dalja_ispitivanja(duboka_venska_tromboza,vaskularni_hirurg).
 dalja_ispitivanja(embolija, vaskularni_hirurg).
 dalja_ispitivanja(erizipel, infektolog).
 
+preventivni_pregled(duboka_venska_tromboza, radiolog_za_1_mesec).
+preventivni_pregled(embolija, ct_skener_za_1_mesec).
+preventivni_pregled(erizipel, infektolog_za_2_nedelje).
 
 % HASIMOTO TIREODITIS
 simptomi(hasimoto_tireoditis_hiper_faza, [genetski_faktor, povisena_telesna_tempetatura, bol_u_vratu_u_regiji_stitaste_zlezde, preznojavanje, drhtanje, opadanje_kose, povisen_krvni_pritisak, dekoncentracija]).
 simptomi(hasimoto_tireoditis_hipo_faza, [genetski_faktor, zamor, pospanost, podbulost, pojacano_gojenje, nemogucnost_skidanja_kila, izostanak_ciklusa]).
 
+dijagnosticka_procedura(hasimoto_tireoditis_hiper_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_uvecana, signal_krvnih_sudova_pojacan]).
+dijagnosticka_procedura(hasimoto_tireoditis_hipo_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_smanjena, signal_krvnih_sudova_smanjen]).
+
 dalja_ispitivanja(hasimoto_tireoditis_hiper_faza,endokrinolog).
 dalja_ispitivanja(hasimoto_tireoditis_hipo_faza,endokrinolog).
 
+preventivni_pregled(hasimoto_tireoditis_hiper_faza, radiolog_za_6_meseci).
+preventivni_pregled(hasimoto_tireoditis_hiper_faza, endokrinolog_za_6_meseci).
+preventivni_pregled(hasimoto_tireoditis_hipo_faza, radiolog_za_6_meseci).
+preventivni_pregled(hasimoto_tireoditis_hipo_faza, endokrinolog_za_6_meseci).
 
-dijagnosticka_procedura(hasimoto_tireoditis_hiper_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_uvecana, signal_krvnih_sudova_pojacan]).
-dijagnosticka_procedura(hasimoto_tireoditis_hipo_faza, [stitasta_zlezda_deformisane_konture, stitasta_zlezda_smanjena, signal_krvnih_sudova_smanjen]).
 
 
 % KAMEN U ZUCNOJ KESI tj. HOLELITIJAZA, CIR NA 12PALACNOM CREVU tj. ULKUS DUADENUMA
@@ -38,6 +46,9 @@ dalja_ispitivanja(kamen_u_zucnoj_kesi___holelitijaza ,hirurg).
 dalja_ispitivanja(upala_zucne_kese___holecistitis, hirurg).
 dalja_ispitivanja(cir_na_12palacnom_crevu___ulkus_duadenuma ,gastroenterolog).
 
+preventivni_pregled(kamen_u_zucnoj_kesi___holelitijaza, radiolog_za_1_godinu).
+preventivni_pregled(upala_zucne_kese___holecistitis, radiolog_za_2_nedelje).
+preventivni_pregled(cir_na_12palacnom_crevu___ulkus_duadenuma, gastroenterolog_po_potrebi).
 
 % BOLESTI DOJKE  CISTE , BENIGNI / MALIGNI TUMOR
 simptomi(cista_na_dojci, [bolan_cvor_na_dojci, cvor_je_elastican]).
@@ -68,6 +79,19 @@ dalja_ispitivanja(maligni_tumor_dojke_faza3, hirurg).
 dalja_ispitivanja(maligni_tumor_dojke_faza4, hirurg).
 
 
+preventivni_pregled(cista_na_dojci, radiolog_za_1_godinu).
+preventivni_pregled(benigni_tumor_dojke, radiolog_za_1_godinu).
+preventivni_pregled(maligni_tumor_dojke, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_dojke_faza1, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_dojke_faza2, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_dojke_faza3, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_dojke_faza4, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+
+
+
+
+
+
 % BOLESTI BUBREGA tj. MALIGNI / BENIGNI TUMOR,  KAMEN 
 simptomi(kamen_u_bubregu, [bolno_mokrenje_krvi, ostar_bol_u_bubreznoj_lozi, povisena_telesna_temperatura]).
 simptomi(benigni_tumor_bubrega, [bezbolno_mokrenje_krvi, tup_bol_u_bubreznoj_lozi]).
@@ -95,3 +119,12 @@ dalja_ispitivanja(maligni_tumor_bubrega_faza1, urolog).
 dalja_ispitivanja(maligni_tumor_bubrega_faza2, urolog).
 dalja_ispitivanja(maligni_tumor_bubrega_faza3, urolog).
 dalja_ispitivanja(maligni_tumor_bubrega_faza4, urolog).
+
+
+preventivni_pregled(kamen_u_bubregu, radiolog_za_1_godinu).
+preventivni_pregled(benigni_tumor_bubrega, radiolog_za_1_godinu).
+preventivni_pregled(maligni_tumor_bubrega, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_bubrega_faza1, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_bubrega_faza2, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_bubrega_faza3, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).
+preventivni_pregled(maligni_tumor_bubrega_faza4, radiolog_u_prvoj_godini_lecenja_na_svaka_3_meseca_naredne_dve_godine_na_6_meseci_nadalje_jednom_godisnje).

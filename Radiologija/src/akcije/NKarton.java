@@ -39,6 +39,9 @@ import java.awt.ScrollPane;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollBar;
+import java.awt.Panel;
+import javax.swing.JScrollPane;
 
 public class NKarton {
 
@@ -341,7 +344,8 @@ public class NKarton {
 		    	    
 		    	    anamneza=anamneza.substring(0, anamneza.length() - 1);
 		    	    //System.out.println(anamneza);
-		    	    pr.println("anamneza("+imeTF.getText()+",["+anamneza+"]).");
+		    	    String imeRazmak=imeTF.getText().replace(" ", "_");
+		    	    pr.println("anamneza("+imeRazmak+",["+anamneza+"]).");
 		    	    
 		    	    String dijagnostickaProcedura="";
 		    	    for (int i=0; i<listaDP.getSelectedItems().length; i++)
@@ -349,7 +353,7 @@ public class NKarton {
 		    	    
 		    	    dijagnostickaProcedura=dijagnostickaProcedura.substring(0, dijagnostickaProcedura.length() - 1);
 		    	    //System.out.println(dijagnostickaProcedura);
-		    	    pr.println("pregled("+imeTF.getText()+",["+dijagnostickaProcedura+"]).");
+		    	    pr.println("pregled("+imeRazmak+",["+dijagnostickaProcedura+"]).");
 		    	    
 		    	    pr.close();
 		    	    br.close();
@@ -383,7 +387,8 @@ public class NKarton {
 					System.out.println( "consult " + (q3.query() ? "succeeded" : "failed"));
 
 				Variable Dijagnoza = new Variable("Dijagnoza");
-				Term arg[] = {new Atom(imeTF.getText()), Dijagnoza };
+				String imeRazmak=imeTF.getText().replace(" ", "_");
+				Term arg[] = {new Atom(imeRazmak), Dijagnoza };
 				Query    q = new Query("dijagnoza", arg);
 				
 				String dijagnoza="";
@@ -400,6 +405,8 @@ public class NKarton {
 			
 			}
 		});
+		
+		JTextArea textAreaPrPregled = new JTextArea();
 		
 		listDijagnoza.addActionListener(new ActionListener() {
 			
@@ -433,8 +440,9 @@ public class NKarton {
 
 				System.out.println( listDijagnoza.getSelectedItem().toString());
 				
+				String imeRazmak=imeTF.getText().replace(" ", "_");
 				Variable DaljaIspitivanja = new Variable("DaljaIspitivanja");
-				Term arg[] = {new Atom(imeTF.getText()),new Atom(listDijagnoza.getSelectedItem().toString()), DaljaIspitivanja };
+				Term arg[] = {new Atom(imeRazmak),new Atom(listDijagnoza.getSelectedItem().toString()), DaljaIspitivanja };
 				Query    q = new Query("dalja_ispitivanja_zakljucak", arg);
 				
 				
@@ -445,7 +453,20 @@ public class NKarton {
 					daljispt=bound_to_dalja_ispitivanja.toString()+"\n";
 					textAreaDI.setText(daljispt);
 					
-					 }														
+					 }		
+				
+				Variable PreventivniPregledi = new Variable("PreventivniPregledi");
+				Term args[] = {new Atom(imeRazmak),new Atom(listDijagnoza.getSelectedItem().toString()), PreventivniPregledi };
+				Query qpp = new Query("preventivni_pregled_zakljucak", args);
+			
+				String prevpreg="";	
+				while (qpp.hasMoreElements()){
+					Term bound_to_pp = (Term) ((Hashtable) qpp.nextElement()).get("PreventivniPregledi");
+					System.out.println(bound_to_pp);
+					prevpreg+=bound_to_pp.toString()+"\n";
+					textAreaPrPregled.setText(prevpreg);
+					
+					 }		
 			}
 		});
 		
@@ -475,6 +496,11 @@ public class NKarton {
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(Color.GRAY));
 		
+		JLabel lblPrevPr = new JLabel("Preventivni - kontrolni pregledi:");
+		lblPrevPr.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JPanel panelPrPregled = new JPanel();
+		
 		
 		
 		
@@ -485,7 +511,6 @@ public class NKarton {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						
 						.addComponent(btnOdrediDijagnozu)
 						.addComponent(rdbtnUltrazvukDojki)
 						.addComponent(rdbtnUltrazvukBubrega)
@@ -507,8 +532,10 @@ public class NKarton {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblDaljaIspitivanja)
-								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))))
+								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+						.addComponent(lblPrevPr)
+						.addComponent(panelPrPregled, GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -551,10 +578,31 @@ public class NKarton {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 66, Short.MAX_VALUE))
-					.addGap(18)
-					
-					.addContainerGap(75, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblPrevPr)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelPrPregled, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_panelPrPregled = new GroupLayout(panelPrPregled);
+		gl_panelPrPregled.setHorizontalGroup(
+			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelPrPregled.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_panelPrPregled.setVerticalGroup(
+			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelPrPregled.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		
+		
+		scrollPane.setViewportView(textAreaPrPregled);
+		panelPrPregled.setLayout(gl_panelPrPregled);
 		
 		
 		

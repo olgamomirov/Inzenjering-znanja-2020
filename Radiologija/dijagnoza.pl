@@ -5,3 +5,5 @@ dijagnoza(X, D) :- (anamneza(X, A), simptomi(D, LS), contains(LS,A)), (pregled(X
 
 
 dalja_ispitivanja_zakljucak(X,D,Z):-dijagnoza(X,D),dalja_ispitivanja(D,Z).
+
+preventivni_pregled_zakljucak(X,D,Z):-dijagnoza(X,D), preventivni_pregled(D,Z).
