@@ -14,6 +14,9 @@ import jpl.Atom;
 import jpl.Query;
 import jpl.Term;
 import jpl.Variable;
+import model.PacijentDescriptor;
+import ucm.gaia.jcolibri.cbraplications.StandardCBRApplication;
+import ucm.gaia.jcolibri.cbrcore.CBRQuery;
 
 import java.awt.List;
 import javax.swing.JList;
@@ -29,6 +32,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
@@ -38,6 +42,9 @@ import javax.swing.JTextArea;
 import java.awt.ScrollPane;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import cbr.CbrApplication;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollBar;
 import java.awt.Panel;
@@ -101,7 +108,7 @@ public class NKarton {
 		
 		JPanel panel_1 = new JPanel();
 		
-		JButton btnOdrediDijagnozu = new JButton("Odredi dijagnozu");
+		JButton btnOdrediDijagnozu = new JButton("Odredi dijagnozu RB");
 		btnOdrediDijagnozu.setForeground(new Color(255, 102, 0));
 		
 		btnOdrediDijagnozu.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -501,6 +508,51 @@ public class NKarton {
 		
 		JPanel panelPrPregled = new JPanel();
 		
+		JButton btnOdrediDijagnozuCb = new JButton("Odredi dijagnozu CB");
+		btnOdrediDijagnozuCb.setForeground(new Color(255, 102, 0));
+		btnOdrediDijagnozuCb.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			//*******************KOPIRAN MAIN*******************************
+				StandardCBRApplication recommender = new CbrApplication();
+				try {
+					recommender.configure();
+
+					recommender.preCycle();
+
+					CBRQuery query = new CBRQuery();
+					
+					ArrayList<String> simptomi= new ArrayList<>();
+					simptomi.add("otecena_noga");
+					simptomi.add("noga_svrbi");
+					simptomi.add("modra_noga");
+					
+					PacijentDescriptor pacijent = new PacijentDescriptor();
+					
+					pacijent.setSimptomi(simptomi);
+					pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
+					
+					
+					query.setDescription( pacijent );
+					recommender.cycle(query);
+
+					recommender.postCycle();
+					
+					CbrApplication cbr=(CbrApplication)recommender;
+					
+					textAreaPrPregled.setText(cbr.getDijagnoza());
+					
+				
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			//*******************KOPIRAN MAIN*******************************
+				
+			}
+		});
+		
 		
 		
 		
@@ -511,7 +563,10 @@ public class NKarton {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnOdrediDijagnozu)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnOdrediDijagnozu)
+							.addGap(51)
+							.addComponent(btnOdrediDijagnozuCb))
 						.addComponent(rdbtnUltrazvukDojki)
 						.addComponent(rdbtnUltrazvukBubrega)
 						.addComponent(lblVrstaPregleda)
@@ -532,10 +587,10 @@ public class NKarton {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblDaljaIspitivanja)
-								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+								.addComponent(lblPrimenjenaDijagnostikaProcedura, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+								.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))
 						.addComponent(lblPrevPr)
-						.addComponent(panelPrPregled, GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
+						.addComponent(panelPrPregled, GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -569,7 +624,9 @@ public class NKarton {
 						.addComponent(panel_1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(panel, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnOdrediDijagnozu)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnOdrediDijagnozu)
+						.addComponent(btnOdrediDijagnozuCb))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDijagnoza)
@@ -582,7 +639,7 @@ public class NKarton {
 					.addComponent(lblPrevPr)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelPrPregled, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		JScrollPane scrollPane = new JScrollPane();
