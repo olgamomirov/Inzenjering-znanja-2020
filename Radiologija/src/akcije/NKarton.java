@@ -503,7 +503,7 @@ public class NKarton {
 		panel_2.setBounds(24, 323, 265, 65);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(25, 422, 260, 60);
+		panel_3.setBounds(25, 422, 265, 65);
 		panel_3.setBorder(new LineBorder(Color.GRAY));
 		
 		JLabel lblPrevPr = new JLabel("Preventivni - kontrolni pregledi RB:");
@@ -512,7 +512,7 @@ public class NKarton {
 		
 		JPanel panelPrPregled = new JPanel();
 		panelPrPregled.setBorder(new LineBorder(new Color(128, 128, 128)));
-		panelPrPregled.setBounds(24, 525, 260, 60);
+		panelPrPregled.setBounds(24, 518, 265, 65);
 		
 		JButton btnOdrediDijagnozuCb = new JButton("Odredi dijagnozu CB");
 		btnOdrediDijagnozuCb.setBounds(339, 260, 198, 31);
@@ -534,17 +534,14 @@ public class NKarton {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		GroupLayout gl_panelPrPregled = new GroupLayout(panelPrPregled);
 		gl_panelPrPregled.setHorizontalGroup(
-			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelPrPregled.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+			gl_panelPrPregled.createParallelGroup(Alignment.TRAILING)
+				.addComponent(scrollPane, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_panelPrPregled.setVerticalGroup(
 			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelPrPregled.createSequentialGroup()
-					.addGap(0, 0, Short.MAX_VALUE)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		
@@ -557,14 +554,12 @@ public class NKarton {
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
-					.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(20, Short.MAX_VALUE))
+					.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_3.setVerticalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_3.createSequentialGroup()
-					.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 		);
 		panel_3.setLayout(gl_panel_3);
 		
@@ -572,15 +567,13 @@ public class NKarton {
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
-					.addComponent(listDijagnoza, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(14, Short.MAX_VALUE))
+				.addComponent(listDijagnoza, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
-					.addComponent(listDijagnoza, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-					.addContainerGap())
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addComponent(listDijagnoza, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
 		frmKartonPacijenta.getContentPane().setLayout(null);
