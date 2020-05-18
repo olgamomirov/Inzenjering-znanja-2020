@@ -102,11 +102,11 @@ public class NKarton {
 		imeTF.setColumns(10);
 		
 		JLabel lblAnamneza = new JLabel("Anamneza:");
-		lblAnamneza.setBounds(339, 45, 666, 19);
+		lblAnamneza.setBounds(339, 45, 100, 19);
 		lblAnamneza.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel lblPrimenjenaDijagnostikaProcedura = new JLabel("Primenjena dijagnosti\u010Dka procedura:");
-		lblPrimenjenaDijagnostikaProcedura.setBounds(659, 45, 666, 19);
+		lblPrimenjenaDijagnostikaProcedura.setBounds(669, 45, 290, 19);
 		lblPrimenjenaDijagnostikaProcedura.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panel = new JPanel();
@@ -495,7 +495,7 @@ public class NKarton {
 		});
 		
 		JLabel lblDaljaIspitivanja = new JLabel("Dalja ispitivanja RB:");
-		lblDaljaIspitivanja.setBounds(24, 396, 152, 19);
+		lblDaljaIspitivanja.setBounds(24, 396, 155, 19);
 		lblDaljaIspitivanja.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDaljaIspitivanja.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
@@ -507,58 +507,18 @@ public class NKarton {
 		panel_3.setBorder(new LineBorder(Color.GRAY));
 		
 		JLabel lblPrevPr = new JLabel("Preventivni - kontrolni pregledi RB:");
-		lblPrevPr.setBounds(24, 495, 271, 19);
+		lblPrevPr.setBounds(24, 493, 271, 19);
 		lblPrevPr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panelPrPregled = new JPanel();
-		panelPrPregled.setBorder(new LineBorder(Color.GRAY));
+		panelPrPregled.setBorder(new LineBorder(new Color(128, 128, 128)));
 		panelPrPregled.setBounds(24, 525, 260, 60);
 		
 		JButton btnOdrediDijagnozuCb = new JButton("Odredi dijagnozu CB");
-		btnOdrediDijagnozuCb.setBounds(339, 260, 193, 31);
+		btnOdrediDijagnozuCb.setBounds(339, 260, 198, 31);
 		btnOdrediDijagnozuCb.setForeground(new Color(255, 102, 0));
 		btnOdrediDijagnozuCb.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			//*******************KOPIRAN MAIN*******************************
-				StandardCBRApplication recommender = new CbrApplication();
-				try {
-					recommender.configure();
-
-					recommender.preCycle();
-
-					CBRQuery query = new CBRQuery();
-					
-					ArrayList<String> simptomi= new ArrayList<>();
-					simptomi.add("otecena_noga");
-					simptomi.add("noga_svrbi");
-					simptomi.add("modra_noga");
-					
-					PacijentDescriptor pacijent = new PacijentDescriptor();
-					
-					pacijent.setSimptomi(simptomi);
-					pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
-					
-					
-					query.setDescription( pacijent );
-					recommender.cycle(query);
-
-					recommender.postCycle();
-					
-					CbrApplication cbr=(CbrApplication)recommender;
-					
-					textAreaPrPregled.setText(cbr.getDijagnoza());
-					
-				
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			//*******************KOPIRAN MAIN*******************************
-				
-			}
-		});
+		
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -651,17 +611,24 @@ public class NKarton {
 		frmKartonPacijenta.getContentPane().add(lblNewLabel);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.YELLOW);
+		panel_4.setBorder(new LineBorder(Color.GRAY));
+		panel_4.setBackground(Color.WHITE);
 		panel_4.setBounds(339, 323, 265, 65);
 		frmKartonPacijenta.getContentPane().add(panel_4);
+		
+		JTextArea textAreaDCB = new JTextArea();
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 265, Short.MAX_VALUE)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addComponent(textAreaDCB, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panel_4.setVerticalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 65, Short.MAX_VALUE)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addComponent(textAreaDCB, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(43, Short.MAX_VALUE))
 		);
 		panel_4.setLayout(gl_panel_4);
 		
@@ -671,41 +638,94 @@ public class NKarton {
 		frmKartonPacijenta.getContentPane().add(lblNewLabel_1);
 		
 		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Color.BLUE);
+		panel_5.setBorder(new LineBorder(Color.GRAY));
+		panel_5.setBackground(Color.WHITE);
 		panel_5.setBounds(339, 422, 265, 65);
 		frmKartonPacijenta.getContentPane().add(panel_5);
+		
+		JTextArea textAreaDICB = new JTextArea();
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 265, Short.MAX_VALUE)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addComponent(textAreaDICB, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(99, Short.MAX_VALUE))
 		);
 		gl_panel_5.setVerticalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 65, Short.MAX_VALUE)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addComponent(textAreaDICB, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		panel_5.setLayout(gl_panel_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("Preventivni - kontrolni pregledi CB:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(339, 491, 265, 27);
+		lblNewLabel_2.setBounds(339, 491, 271, 19);
 		frmKartonPacijenta.getContentPane().add(lblNewLabel_2);
 		
 		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(Color.CYAN);
+		panel_6.setBorder(new LineBorder(Color.GRAY));
+		panel_6.setBackground(Color.WHITE);
 		panel_6.setBounds(339, 518, 265, 65);
 		frmKartonPacijenta.getContentPane().add(panel_6);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
 		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
 		gl_panel_6.setHorizontalGroup(
 			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 265, Short.MAX_VALUE)
+				.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_panel_6.setVerticalGroup(
 			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 65, Short.MAX_VALUE)
+				.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 		);
+		
+		JTextArea textAreaPrPCB = new JTextArea();
+		scrollPane_1.setViewportView(textAreaPrPCB);
 		panel_6.setLayout(gl_panel_6);
 		
-		
+		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			//*******************KOPIRAN MAIN*******************************
+				StandardCBRApplication recommender = new CbrApplication();
+				try {
+					recommender.configure();
+
+					recommender.preCycle();
+
+					CBRQuery query = new CBRQuery();
+					
+					ArrayList<String> simptomi= new ArrayList<>();
+					simptomi.add("otecena_noga");
+					simptomi.add("noga_svrbi");
+					simptomi.add("modra_noga");
+					
+					PacijentDescriptor pacijent = new PacijentDescriptor();
+					
+					pacijent.setSimptomi(simptomi);
+					pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
+					
+					
+					query.setDescription( pacijent );
+					recommender.cycle(query);
+
+					recommender.postCycle();
+					
+					CbrApplication cbr=(CbrApplication)recommender;
+					
+					textAreaPrPregled.setText(cbr.getDijagnoza());
+					
+				
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			//*******************KOPIRAN MAIN*******************************
+				
+			}
+		});
 		
 	}
 }
