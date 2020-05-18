@@ -49,6 +49,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollBar;
 import java.awt.Panel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class NKarton {
 
@@ -115,13 +116,13 @@ public class NKarton {
 		panel_1.setBounds(669, 81, 303, 168);
 		
 		JButton btnOdrediDijagnozu = new JButton("Odredi dijagnozu RB");
-		btnOdrediDijagnozu.setBounds(24, 290, 185, 27);
+		btnOdrediDijagnozu.setBounds(24, 260, 198, 31);
 		btnOdrediDijagnozu.setForeground(new Color(255, 102, 0));
 		
 		btnOdrediDijagnozu.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JLabel lblDijagnoza = new JLabel("Dijagnoza RB:");
-		lblDijagnoza.setBounds(24, 345, 123, 19);
+		lblDijagnoza.setBounds(24, 302, 123, 19);
 		lblDijagnoza.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JRadioButton rdbtnUltrazvukDonjihEkstremiteta = new JRadioButton("Ultrazvuk donjih ekstremiteta");
@@ -161,13 +162,13 @@ public class NKarton {
 		JTextArea textAreaDI = new JTextArea();
 		
 		List listaA = new List();		
-		listaA.setBounds(339, 83, 290, 153);
+		listaA.setBounds(339, 83, 290, 160);
 		frmKartonPacijenta.getContentPane().add(listaA);
 		listaA.setMultipleMode(true);
 		
 		
 		List listaDP = new List();
-		listaDP.setBounds(669, 83, 290, 153);
+		listaDP.setBounds(669, 83, 290, 160);
 		frmKartonPacijenta.getContentPane().add(listaDP);
 		listaDP.setMultipleMode(true);
 		
@@ -493,27 +494,28 @@ public class NKarton {
 			}
 		});
 		
-		JLabel lblDaljaIspitivanja = new JLabel("Dalja ispitivanja:");
-		lblDaljaIspitivanja.setBounds(375, 357, 127, 19);
+		JLabel lblDaljaIspitivanja = new JLabel("Dalja ispitivanja RB:");
+		lblDaljaIspitivanja.setBounds(24, 396, 152, 19);
 		lblDaljaIspitivanja.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblDaljaIspitivanja.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(24, 377, 303, 66);
+		panel_2.setBounds(24, 323, 265, 65);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(357, 377, 296, 66);
+		panel_3.setBounds(25, 422, 260, 60);
 		panel_3.setBorder(new LineBorder(Color.GRAY));
 		
-		JLabel lblPrevPr = new JLabel("Preventivni - kontrolni pregledi:");
-		lblPrevPr.setBounds(24, 522, 240, 19);
+		JLabel lblPrevPr = new JLabel("Preventivni - kontrolni pregledi RB:");
+		lblPrevPr.setBounds(24, 495, 271, 19);
 		lblPrevPr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		
 		JPanel panelPrPregled = new JPanel();
-		panelPrPregled.setBounds(12, 579, 981, 66);
+		panelPrPregled.setBorder(new LineBorder(Color.GRAY));
+		panelPrPregled.setBounds(24, 525, 260, 60);
 		
 		JButton btnOdrediDijagnozuCb = new JButton("Odredi dijagnozu CB");
-		btnOdrediDijagnozuCb.setBounds(538, 290, 183, 27);
+		btnOdrediDijagnozuCb.setBounds(339, 260, 193, 31);
 		btnOdrediDijagnozuCb.setForeground(new Color(255, 102, 0));
 		btnOdrediDijagnozuCb.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
@@ -569,18 +571,20 @@ public class NKarton {
 		panel.setLayout(gl_panel);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		GroupLayout gl_panelPrPregled = new GroupLayout(panelPrPregled);
 		gl_panelPrPregled.setHorizontalGroup(
 			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelPrPregled.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
-					.addContainerGap())
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_panelPrPregled.setVerticalGroup(
 			gl_panelPrPregled.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelPrPregled.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(0, 0, Short.MAX_VALUE)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		
 		
@@ -591,26 +595,30 @@ public class NKarton {
 		
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(
-			gl_panel_3.createParallelGroup(Alignment.TRAILING)
-				.addComponent(textAreaDI, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+			gl_panel_3.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_3.createSequentialGroup()
+					.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		gl_panel_3.setVerticalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
-				.addComponent(textAreaDI, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+				.addGroup(gl_panel_3.createSequentialGroup()
+					.addComponent(textAreaDI, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panel_3.setLayout(gl_panel_3);
 		
 		
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
-					.addComponent(listDijagnoza, GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-					.addContainerGap())
+			gl_panel_2.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_2.createSequentialGroup()
+					.addComponent(listDijagnoza, GroupLayout.PREFERRED_SIZE, 260, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(14, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_2.createSequentialGroup()
+			gl_panel_2.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_2.createSequentialGroup()
 					.addComponent(listDijagnoza, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
 					.addContainerGap())
 		);
@@ -636,6 +644,66 @@ public class NKarton {
 		frmKartonPacijenta.getContentPane().add(lblDaljaIspitivanja);
 		frmKartonPacijenta.getContentPane().add(lblPrimenjenaDijagnostikaProcedura);
 		frmKartonPacijenta.getContentPane().add(panel_1);
+		
+		JLabel lblNewLabel = new JLabel("Dijagnoza CB:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(339, 298, 134, 27);
+		frmKartonPacijenta.getContentPane().add(lblNewLabel);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.YELLOW);
+		panel_4.setBounds(339, 323, 265, 65);
+		frmKartonPacijenta.getContentPane().add(panel_4);
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 265, Short.MAX_VALUE)
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 65, Short.MAX_VALUE)
+		);
+		panel_4.setLayout(gl_panel_4);
+		
+		JLabel lblNewLabel_1 = new JLabel("Dalja ispitivanja CB:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(339, 396, 155, 19);
+		frmKartonPacijenta.getContentPane().add(lblNewLabel_1);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(Color.BLUE);
+		panel_5.setBounds(339, 422, 265, 65);
+		frmKartonPacijenta.getContentPane().add(panel_5);
+		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
+		gl_panel_5.setHorizontalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 265, Short.MAX_VALUE)
+		);
+		gl_panel_5.setVerticalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 65, Short.MAX_VALUE)
+		);
+		panel_5.setLayout(gl_panel_5);
+		
+		JLabel lblNewLabel_2 = new JLabel("Preventivni - kontrolni pregledi CB:");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(339, 491, 265, 27);
+		frmKartonPacijenta.getContentPane().add(lblNewLabel_2);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(Color.CYAN);
+		panel_6.setBounds(339, 518, 265, 65);
+		frmKartonPacijenta.getContentPane().add(panel_6);
+		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
+		gl_panel_6.setHorizontalGroup(
+			gl_panel_6.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 265, Short.MAX_VALUE)
+		);
+		gl_panel_6.setVerticalGroup(
+			gl_panel_6.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 65, Short.MAX_VALUE)
+		);
+		panel_6.setLayout(gl_panel_6);
 		
 		
 		
