@@ -94,10 +94,10 @@ public class CbrApplication implements StandardCBRApplication {
 			System.out.println(nse.get_case().getDescription() + " -> " + nse.getEval());
 			PacijentDescriptor p=(PacijentDescriptor) nse.get_case().getDescription();
 			System.out.println("verovatnoca je: "+nse.getEval()+"  za dijagnozu: "+ p.getDijagnoza());
-			String dijagproc=i+" "+p.getDijagnoza()+"->"+nse.getEval();
+			String dijagproc=i+") "+p.getDijagnoza()+"->"+nse.getEval();
 			dijagnoza+=dijagproc+"\n";
-			daljaIspitivanja+=i+" "+p.getDaljaIspitivanja()+"\n";
-			preventivniPregledi+=i+" "+p.getPreventivniPregledi()+"\n";
+			daljaIspitivanja+=i+") "+p.getDaljaIspitivanja()+"\n";
+			preventivniPregledi+=i+") "+p.getPreventivniPregledi()+"\n";
 		}
 		
 		

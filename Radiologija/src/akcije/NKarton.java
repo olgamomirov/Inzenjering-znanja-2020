@@ -531,7 +531,6 @@ public class NKarton {
 		panel.setLayout(gl_panel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		GroupLayout gl_panelPrPregled = new GroupLayout(panelPrPregled);
 		gl_panelPrPregled.setHorizontalGroup(
 			gl_panelPrPregled.createParallelGroup(Alignment.TRAILING)
@@ -609,20 +608,19 @@ public class NKarton {
 		panel_4.setBounds(339, 323, 265, 65);
 		frmKartonPacijenta.getContentPane().add(panel_4);
 		
-		JTextArea textAreaDCB = new JTextArea();
+		JScrollPane scrollPane_2 = new JScrollPane();
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(textAreaDCB, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_panel_4.setVerticalGroup(
 			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_4.createSequentialGroup()
-					.addComponent(textAreaDCB, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(43, Short.MAX_VALUE))
+				.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 		);
+		
+		JTextArea textAreaDCB = new JTextArea();
+		scrollPane_2.setViewportView(textAreaDCB);
 		panel_4.setLayout(gl_panel_4);
 		
 		JLabel lblNewLabel_1 = new JLabel("Dalja ispitivanja CB:");
@@ -636,20 +634,19 @@ public class NKarton {
 		panel_5.setBounds(339, 422, 265, 65);
 		frmKartonPacijenta.getContentPane().add(panel_5);
 		
-		JTextArea textAreaDICB = new JTextArea();
+		JScrollPane scrollPane_3 = new JScrollPane();
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addComponent(textAreaDICB, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(99, Short.MAX_VALUE))
+				.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 		);
 		gl_panel_5.setVerticalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addComponent(textAreaDICB, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(19, Short.MAX_VALUE))
+				.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 		);
+		
+		JTextArea textAreaDICB = new JTextArea();
+		scrollPane_3.setViewportView(textAreaDICB);
 		panel_5.setLayout(gl_panel_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("Preventivni - kontrolni pregledi CB:");
