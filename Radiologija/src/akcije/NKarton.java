@@ -692,14 +692,25 @@ public class NKarton {
 					CBRQuery query = new CBRQuery();
 					
 					ArrayList<String> simptomi= new ArrayList<>();
+					for (int i=0;i<listaA.getSelectedItems().length;i++) {
+						simptomi.add(listaA.getSelectedItems()[i]);
+					}
+					
+					/*
 					simptomi.add("otecena_noga");
 					simptomi.add("noga_svrbi");
 					simptomi.add("modra_noga");
+					*/
+					
+					ArrayList<String> dijagnostickaProcedura= new ArrayList<>();
+					for (int i=0;i<listaDP.getSelectedItems().length;i++) {
+						dijagnostickaProcedura.add(listaDP.getSelectedItems()[i]);
+					}
 					
 					PacijentDescriptor pacijent = new PacijentDescriptor();
 					
 					pacijent.setSimptomi(simptomi);
-					pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
+					pacijent.setDijagnostickaProcedura(dijagnostickaProcedura);
 					
 					
 					query.setDescription( pacijent );
@@ -709,7 +720,10 @@ public class NKarton {
 					
 					CbrApplication cbr=(CbrApplication)recommender;
 					
-					textAreaPrPregled.setText(cbr.getDijagnoza());
+					
+					textAreaDCB.setText(cbr.getDijagnoza());
+					textAreaDICB.setText(cbr.getDaljaIspitivanja());
+					textAreaPrPCB.setText(cbr.getPreventivniPregledi());
 					
 				
 				} catch (Exception e1) {

@@ -25,7 +25,25 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CbrApplication implements StandardCBRApplication {
 	private String dijagnoza="";
+	private String daljaIspitivanja="";
+	private String preventivniPregledi="";
 	
+	public String getPreventivniPregledi() {
+		return preventivniPregledi;
+	}
+
+	public void setPreventivniPregledi(String preventivniPregledi) {
+		this.preventivniPregledi = preventivniPregledi;
+	}
+
+	public String getDaljaIspitivanja() {
+		return daljaIspitivanja;
+	}
+
+	public void setDaljaIspitivanja(String daljaIspitivanja) {
+		this.daljaIspitivanja = daljaIspitivanja;
+	}
+
 	public String getDijagnoza() {
 		return dijagnoza;
 	}
@@ -51,8 +69,8 @@ public class CbrApplication implements StandardCBRApplication {
 				
 		
 		simConfig.addMapping(new Attribute("simptomi", PacijentDescriptor.class), new MySimilarity());
-		simConfig.addMapping(new Attribute("dijagnostickaProcedura", PacijentDescriptor.class), new Equal());
-		//simConfig.addMapping(new Attribute("dijagnoza", PacijentDescriptor.class), new Equal());
+		simConfig.addMapping(new Attribute("dijagnostickaProcedura", PacijentDescriptor.class), new MySimilarity());
+		//simConfig.addMapping(new Attribute("daljaIspitivanja", PacijentDescriptor.class), new Equal());
 		
 
 		// Equal - returns 1 if both individuals are equal, otherwise returns 0
@@ -70,12 +88,16 @@ public class CbrApplication implements StandardCBRApplication {
 		Collection<RetrievalResult> eval = NNScoringMethod.evaluateSimilarity(_caseBase.getCases(), query, simConfig);
 		eval = SelectCases.selectTopKRR(eval, 5);
 		System.out.println("Retrieved cases:");
+		int i=0;
 		for (RetrievalResult nse : eval) {
+			i=i+1;
 			System.out.println(nse.get_case().getDescription() + " -> " + nse.getEval());
 			PacijentDescriptor p=(PacijentDescriptor) nse.get_case().getDescription();
 			System.out.println("verovatnoca je: "+nse.getEval()+"  za dijagnozu: "+ p.getDijagnoza());
-			String dijagproc=p.getDijagnoza()+"->"+nse.getEval();
+			String dijagproc=i+" "+p.getDijagnoza()+"->"+nse.getEval();
 			dijagnoza+=dijagproc+"\n";
+			daljaIspitivanja+=i+" "+p.getDaljaIspitivanja()+"\n";
+			preventivniPregledi+=i+" "+p.getPreventivniPregledi()+"\n";
 		}
 		
 		
@@ -95,6 +117,7 @@ public class CbrApplication implements StandardCBRApplication {
 	}
 
 	public static void main(String[] args) {
+		
 		StandardCBRApplication recommender = new CbrApplication();
 		try {
 			recommender.configure();
@@ -111,7 +134,7 @@ public class CbrApplication implements StandardCBRApplication {
 			PacijentDescriptor pacijent = new PacijentDescriptor();
 			
 			pacijent.setSimptomi(simptomi);
-			pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
+			//pacijent.setDijagnostickaProcedura("protok_krvi_kroz_venu_se_ne_registruje");
 			
 			
 			query.setDescription( pacijent );
@@ -123,6 +146,7 @@ public class CbrApplication implements StandardCBRApplication {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -39,12 +39,24 @@ public class CsvConnector implements Connector {
 				for (String s : simptomi) {
 					listaSimptoma.add(s);
 				}
+				
+				
+				String[] dijagnostickaProcedura=values[1].split(",");
+				ArrayList<String> dijagnostickaProceduraLista=new ArrayList<>();
+				for(String dp:dijagnostickaProcedura) {
+					dijagnostickaProceduraLista.add(dp);
+					
+				}
+				
 
 				PacijentDescriptor pacijent= new PacijentDescriptor();
 				
 				pacijent.setSimptomi(listaSimptoma);
-				pacijent.setDijagnostickaProcedura(values[1]);
+				//pacijent.setDijagnostickaProcedura(values[1]);
+				pacijent.setDijagnostickaProcedura(dijagnostickaProceduraLista);
 				pacijent.setDijagnoza(values[2]);
+				pacijent.setDaljaIspitivanja(values[3]);
+				pacijent.setPreventivniPregledi(values[4]);
 				
 				
 				cbrCase.setDescription(pacijent);
