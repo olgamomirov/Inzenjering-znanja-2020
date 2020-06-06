@@ -675,6 +675,12 @@ public class NKarton {
 		scrollPane_1.setViewportView(textAreaPrPCB);
 		panel_6.setLayout(gl_panel_6);
 		
+		JButton btnCuvanje = new JButton("\u010Cuvanje");
+		btnCuvanje.setForeground(new Color(255, 0, 0));
+		btnCuvanje.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnCuvanje.setBounds(651, 552, 115, 31);
+		frmKartonPacijenta.getContentPane().add(btnCuvanje);
+		
 		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
 			
 			@Override
@@ -731,7 +737,52 @@ public class NKarton {
 			}
 		});
 		
-		
+		btnCuvanje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String simptomi="";
+				for (int i=0;i<listaA.getSelectedItems().length;i++) {
+					simptomi+=listaA.getSelectedItems()[i]+",";
+				}
+				
+				
+				simptomi=simptomi.substring(0, simptomi.length() - 1);
+				
+							
+				String dp="";
+				for (int i=0;i<listaDP.getSelectedItems().length;i++) {
+					dp+=listaDP.getSelectedItems()[i]+",";
+				}
+				dp=dp.substring(0, dp.length() - 1);
+				
+				
+				String dijagnoza=textAreaDCB.getSelectedText();
+				String daljaispitivanje=textAreaDICB.getSelectedText();
+				String preventivnipregledi=textAreaPrPCB.getSelectedText();
+				
+				String upisUcenje="\n"+simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
+				
+				System.out.println(upisUcenje);
+				
+				File file = new File("bazaBolesti.csv");
+	    	    FileWriter fr;
+				try {
+					fr = new FileWriter(file, true);
+					BufferedWriter br = new BufferedWriter(fr);
+		    	    PrintWriter pr = new PrintWriter(br);
+		    	    
+		    	    pr.println(upisUcenje);
+		    	    pr.close();
+		    	    br.close();
+		    	    fr.close();
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+
+			}
+		}
+		});
 		
 		
 		

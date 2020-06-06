@@ -57,14 +57,14 @@ public class PacijentDescriptor implements CaseComponent{
 	
 
 
-
+	
 	@Override
 	public String toString() {
 		return "PacijentDescriptor [simptomi=" + simptomi + ", dijagnostickaProcedura=" + dijagnostickaProcedura
 				+ ", dijagnoza=" + dijagnoza + ", daljaIspitivanja=" + daljaIspitivanja + ", preventivniPregledi="
 				+ preventivniPregledi + "]";
 	}
-
+	
 
 	public ArrayList<String> getDijagnostickaProcedura() {
 		return dijagnostickaProcedura;
