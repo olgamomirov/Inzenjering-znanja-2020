@@ -1,6 +1,7 @@
 package akcije;
 
 import java.awt.EventQueue;
+import java.nio.file.*; 
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
@@ -32,7 +33,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
@@ -57,6 +61,7 @@ public class NKarton {
 	private JTextField imeTF;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private final ButtonGroup buttonGroup_2 = new ButtonGroup();
+	private JTextField lekarskaDijagnozaTF;
 
 	/**
 	 * Launch the application.
@@ -423,11 +428,16 @@ public class NKarton {
 					dijagnoza=bound_to_dijagnoza.toString();
 					listDijagnoza.add(dijagnoza);
 					
-					 }
-			
+				}
 				
-			
+				try {
+					Files.deleteIfExists(Paths.get("konkretanPregled.pl"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 			}
+		
 		});
 		
 		JTextArea textAreaPrPregled = new JTextArea();
@@ -675,11 +685,28 @@ public class NKarton {
 		scrollPane_1.setViewportView(textAreaPrPCB);
 		panel_6.setLayout(gl_panel_6);
 		
-		JButton btnCuvanje = new JButton("\u010Cuvanje");
+		JButton btnCuvanje = new JButton("\u010Cuvanje CB");
 		btnCuvanje.setForeground(new Color(255, 0, 0));
 		btnCuvanje.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnCuvanje.setBounds(651, 552, 115, 31);
+		btnCuvanje.setBounds(339, 596, 134, 31);
 		frmKartonPacijenta.getContentPane().add(btnCuvanje);
+		
+		lekarskaDijagnozaTF = new JTextField();
+		lekarskaDijagnozaTF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lekarskaDijagnozaTF.setBounds(669, 323, 265, 65);
+		frmKartonPacijenta.getContentPane().add(lekarskaDijagnozaTF);
+		lekarskaDijagnozaTF.setColumns(10);
+		
+		JLabel lblKonanaDijagnoza = new JLabel("Kona\u010Dna dijagnoza:");
+		lblKonanaDijagnoza.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblKonanaDijagnoza.setBounds(669, 302, 203, 16);
+		frmKartonPacijenta.getContentPane().add(lblKonanaDijagnoza);
+		
+		JButton btnIstorija = new JButton("\u010Cuvanje istorije");
+		btnIstorija.setForeground(new Color(255, 0, 0));
+		btnIstorija.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnIstorija.setBounds(669, 396, 169, 30);
+		frmKartonPacijenta.getContentPane().add(btnIstorija);
 		
 		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
 			
@@ -761,7 +788,7 @@ public class NKarton {
 				String daljaispitivanje=textAreaDICB.getSelectedText();
 				String preventivnipregledi=textAreaPrPCB.getSelectedText();
 				
-				String upisUcenje="\n"+simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
+				String upisUcenje=simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
 				
 				System.out.println(upisUcenje);
 				
@@ -780,11 +807,52 @@ public class NKarton {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 
-			}
-		}
+				}
+			}	
 		});
 		
-		
-		
+		btnIstorija.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String simptomi="";
+				for (int i=0;i<listaA.getSelectedItems().length;i++) {
+					simptomi+=listaA.getSelectedItems()[i]+",";
+				}
+				
+				
+				simptomi=simptomi.substring(0, simptomi.length() - 1);
+				
+							
+				String dp="";
+				for (int i=0;i<listaDP.getSelectedItems().length;i++) {
+					dp+=listaDP.getSelectedItems()[i]+",";
+				}
+				dp=dp.substring(0, dp.length() - 1);
+				
+				
+				
+				File istorija = new File("istorija/"+imeTF.getText());
+	    	    FileWriter fr1;
+				try {
+					fr1 = new FileWriter(istorija, true);
+					BufferedWriter br = new BufferedWriter(fr1);
+		    	    PrintWriter pr = new PrintWriter(br);
+		    	    
+		    	    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");  
+		    	    LocalDateTime now = LocalDateTime.now();  
+		    	    //System.out.println();  
+		    	    
+		    	    pr.println(simptomi+";"+dp+";"+lekarskaDijagnozaTF.getText()+";"+dtf.format(now));
+		    	    pr.close();
+		    	    br.close();
+		    	    fr1.close();
+
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}	
+			}
+			
+		});
 	}
 }
