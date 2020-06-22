@@ -16,7 +16,7 @@ public class IstorijaAction implements ActionListener{
 		fc.showOpenDialog(fc);
 		try {
 			File f=fc.getSelectedFile();
-			NKarton noviKarton= new NKarton();
+			NKarton noviKarton= NKarton.getInstance();
 			noviKarton.getImeTF().setText(f.getName());
 			System.out.println(System.getProperty("user.dir"));
 		}catch (Exception e1) {

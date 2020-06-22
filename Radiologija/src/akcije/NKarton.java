@@ -56,7 +56,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class NKarton {
-
+	
+	private static NKarton instanca = null;
+	
 	private JFrame frmKartonPacijenta;
 	private JTextField imeTF;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
@@ -66,6 +68,17 @@ public class NKarton {
 	/**
 	 * Launch the application.
 	 */
+	
+	public static NKarton getInstance() {
+		if(instanca == null) {
+			instanca = new NKarton();			
+		}
+		
+		return instanca;
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -92,12 +105,13 @@ public class NKarton {
 	 */
 	private void initialize() {
 		frmKartonPacijenta = new JFrame();
+		frmKartonPacijenta.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 15));
 		frmKartonPacijenta.setIconImage(Toolkit.getDefaultToolkit().getImage("lib/caduceus (1).png"));
 		frmKartonPacijenta.setTitle("Karton pacijenta");
 		frmKartonPacijenta.setBounds(100, 100, 1035, 725);
 		frmKartonPacijenta.setLocationRelativeTo(null);
 		frmKartonPacijenta.setVisible(true);
-		//frmKartonPacijenta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKartonPacijenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblIme = new JLabel("Ime i prezime:");
 		lblIme.setBounds(24, 16, 107, 19);
@@ -658,6 +672,16 @@ public class NKarton {
 		List listPrPCB = new List();
 		listPrPCB.setBounds(339, 516, 265, 65);
 		frmKartonPacijenta.getContentPane().add(listPrPCB);
+		
+		JButton btnIB = new JButton("Istorija bolesti ");
+		btnIB.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnIB.setForeground(Color.RED);
+		btnIB.setBounds(669, 487, 169, 30);
+		frmKartonPacijenta.getContentPane().add(btnIB);
+		
+		btnIB.addActionListener(new IstorijaBolestiAction());
+		
+		
 		
 		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
 			
