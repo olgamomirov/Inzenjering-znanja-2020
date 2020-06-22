@@ -24,7 +24,7 @@ import ucm.gaia.jcolibri.method.retrieve.NNretrieval.similarity.local.Threshold;
 import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CbrApplication implements StandardCBRApplication {
-	private String dijagnoza="";
+	private ArrayList<String> dijagnoza = new ArrayList<>();
 	private String daljaIspitivanja="";
 	private String preventivniPregledi="";
 	
@@ -44,13 +44,17 @@ public class CbrApplication implements StandardCBRApplication {
 		this.daljaIspitivanja = daljaIspitivanja;
 	}
 
-	public String getDijagnoza() {
+	
+
+	public ArrayList<String> getDijagnoza() {
 		return dijagnoza;
 	}
 
-	public void setDijagnoza(String dijagnoza) {
+	public void setDijagnoza(ArrayList<String> dijagnoza) {
 		this.dijagnoza = dijagnoza;
 	}
+
+
 
 	Connector _connector;  /** Connector object */
 	CBRCaseBase _caseBase;  /** CaseBase object */
@@ -95,7 +99,9 @@ public class CbrApplication implements StandardCBRApplication {
 			PacijentDescriptor p=(PacijentDescriptor) nse.get_case().getDescription();
 			//System.out.println("verovatnoca je: "+nse.getEval()+"  za dijagnozu: "+ p.getDijagnoza());
 			String dijagproc=i+") "+p.getDijagnoza()+"->"+nse.getEval();
-			dijagnoza+=dijagproc+"\n";
+			//dijagnoza+=dijagproc+"\n";
+			dijagnoza.add(dijagproc);
+		
 			daljaIspitivanja+=i+") "+p.getDaljaIspitivanja()+"\n";
 			preventivniPregledi+=i+") "+p.getPreventivniPregledi()+"\n";
 		}

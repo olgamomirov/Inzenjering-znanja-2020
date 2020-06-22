@@ -699,6 +699,15 @@ public class NKarton {
 					
 					CbrApplication cbr=(CbrApplication)recommender;
 					
+					for (String d : cbr.getDijagnoza()) {
+						listDCB.add(d);
+					}
+					
+					
+					
+					
+					
+					
 					
 				//	textAreaDCB.setText(cbr.getDijagnoza());
 				//	textAreaDICB.setText(cbr.getDaljaIspitivanja());
