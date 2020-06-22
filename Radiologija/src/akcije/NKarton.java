@@ -624,7 +624,7 @@ public class NKarton {
 		lblNewLabel_2.setBounds(339, 491, 271, 19);
 		frmKartonPacijenta.getContentPane().add(lblNewLabel_2);
 		
-		JButton btnCuvanje = new JButton("\u010Cuvanje CB");
+		JButton btnCuvanje = new JButton("U\u010Denje CB");
 		btnCuvanje.setForeground(new Color(255, 0, 0));
 		btnCuvanje.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnCuvanje.setBounds(339, 596, 134, 31);
