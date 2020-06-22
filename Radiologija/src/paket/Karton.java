@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import akcije.IstorijaAction;
 import akcije.NoviKartonAction;
 
 import javax.swing.JButton;
@@ -56,6 +57,7 @@ public class Karton {
 		frmRadiolokiElektronskiKarton.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRadiolokiElektronskiKarton.setLocationRelativeTo(null);
 		frmRadiolokiElektronskiKarton.getContentPane().setLayout(null);
+		
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
 		} catch (ClassNotFoundException e1) {
@@ -82,6 +84,7 @@ public class Karton {
 		frmRadiolokiElektronskiKarton.getContentPane().add(btnNoviKarton);
 		
 		JButton btnKartoni = new JButton("Kartoni");
+		btnKartoni.addActionListener(new IstorijaAction());
 		btnKartoni.setSelectedIcon(new ImageIcon("lib/icons8-health-book-100 (1).png"));
 		btnKartoni.setIcon(new ImageIcon("lib/icons8-health-book-100 (1).png"));
 		btnKartoni.setBounds(293, 52, 211, 130);

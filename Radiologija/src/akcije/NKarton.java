@@ -82,6 +82,7 @@ public class NKarton {
 	/**
 	 * Create the application.
 	 */
+	
 	public NKarton() {
 		initialize();
 	}
@@ -95,7 +96,8 @@ public class NKarton {
 		frmKartonPacijenta.setTitle("Karton pacijenta");
 		frmKartonPacijenta.setBounds(100, 100, 1035, 725);
 		frmKartonPacijenta.setLocationRelativeTo(null);
-		frmKartonPacijenta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmKartonPacijenta.setVisible(true);
+		//frmKartonPacijenta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblIme = new JLabel("Ime i prezime:");
 		lblIme.setBounds(24, 16, 107, 19);
@@ -813,5 +815,15 @@ public class NKarton {
 			}
 			
 		});
+		
+		
+	}
+
+	public JTextField getImeTF() {
+		return imeTF;
+	}
+
+	public void setImeTF(JTextField imeTF) {
+		this.imeTF = imeTF;
 	}
 }
