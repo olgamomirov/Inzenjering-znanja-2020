@@ -71,47 +71,33 @@ public class NKarton {
 	
 	public static NKarton getInstance() {
 		if(instanca == null) {
-			instanca = new NKarton();			
+			instanca = new NKarton();	
+			instanca.initialize();
 		}
-		
 		return instanca;
 	}
 	
 	
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NKarton window = new NKarton();
-					window.frmKartonPacijenta.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */
 	
-	public NKarton() {
-		initialize();
-	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
 	private void initialize() {
 		frmKartonPacijenta = new JFrame();
-		frmKartonPacijenta.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 15));
+		frmKartonPacijenta.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 13));
 		frmKartonPacijenta.setIconImage(Toolkit.getDefaultToolkit().getImage("lib/caduceus (1).png"));
 		frmKartonPacijenta.setTitle("Karton pacijenta");
 		frmKartonPacijenta.setBounds(100, 100, 1035, 725);
 		frmKartonPacijenta.setLocationRelativeTo(null);
 		frmKartonPacijenta.setVisible(true);
-		//frmKartonPacijenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frmKartonPacijenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblIme = new JLabel("Ime i prezime:");
 		lblIme.setBounds(24, 16, 107, 19);
@@ -841,6 +827,15 @@ public class NKarton {
 		});
 		
 		
+		
+		frmKartonPacijenta.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        instanca=null;
+		    }
+		});
+		
+		
 	}
 
 	public JTextField getImeTF() {
@@ -850,4 +845,6 @@ public class NKarton {
 	public void setImeTF(JTextField imeTF) {
 		this.imeTF = imeTF;
 	}
+	
+	
 }

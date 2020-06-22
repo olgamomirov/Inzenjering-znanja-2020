@@ -10,15 +10,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.ldap.ManageReferralControl;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class IstorijaBolestiAction implements ActionListener{
 
@@ -36,6 +41,7 @@ public class IstorijaBolestiAction implements ActionListener{
 	    istorijaBolesti.setIconImage(Toolkit.getDefaultToolkit().getImage("lib/caduceus (1).png"));
 	    istorijaBolesti.setVisible(true);
 	    istorijaBolesti.setSize(500, 300); 
+	    istorijaBolesti.setLocationRelativeTo(null);
 	    
 	   
 	    String [] columnNames= {"Dijagnoza", "Datum"};
@@ -46,6 +52,12 @@ public class IstorijaBolestiAction implements ActionListener{
 	      
 	    istorijaBolesti.add(scrollpane);
 	    
+	    TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(table.getModel());
+	    table.setRowSorter(sorter);
+
+	    List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+	    sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+	    sorter.setSortKeys(sortKeys);
 	    
 	    
 	    

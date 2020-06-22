@@ -12,8 +12,8 @@ public class NoviKartonAction implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		NKarton nk=new NKarton();
-		nk.main(null);
+		NKarton nk=NKarton.getInstance();
+		
 	}
 	
 	
