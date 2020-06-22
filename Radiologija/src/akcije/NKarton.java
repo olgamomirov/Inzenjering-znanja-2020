@@ -111,7 +111,7 @@ public class NKarton {
 		frmKartonPacijenta.setBounds(100, 100, 1035, 725);
 		frmKartonPacijenta.setLocationRelativeTo(null);
 		frmKartonPacijenta.setVisible(true);
-		frmKartonPacijenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//frmKartonPacijenta.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLabel lblIme = new JLabel("Ime i prezime:");
 		lblIme.setBounds(24, 16, 107, 19);
