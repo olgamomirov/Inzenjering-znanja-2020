@@ -612,78 +612,15 @@ public class NKarton {
 		lblNewLabel.setBounds(339, 298, 134, 27);
 		frmKartonPacijenta.getContentPane().add(lblNewLabel);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBorder(new LineBorder(Color.GRAY));
-		panel_4.setBackground(Color.WHITE);
-		panel_4.setBounds(339, 323, 265, 65);
-		frmKartonPacijenta.getContentPane().add(panel_4);
-		
-		JScrollPane scrollPane_2 = new JScrollPane();
-		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
-		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_2, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-		);
-		
-		JTextArea textAreaDCB = new JTextArea();
-		scrollPane_2.setViewportView(textAreaDCB);
-		panel_4.setLayout(gl_panel_4);
-		
 		JLabel lblNewLabel_1 = new JLabel("Dalja ispitivanja CB:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_1.setBounds(339, 396, 155, 19);
 		frmKartonPacijenta.getContentPane().add(lblNewLabel_1);
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setBorder(new LineBorder(Color.GRAY));
-		panel_5.setBackground(Color.WHITE);
-		panel_5.setBounds(339, 422, 265, 65);
-		frmKartonPacijenta.getContentPane().add(panel_5);
-		
-		JScrollPane scrollPane_3 = new JScrollPane();
-		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
-		gl_panel_5.setHorizontalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panel_5.setVerticalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-		);
-		
-		JTextArea textAreaDICB = new JTextArea();
-		scrollPane_3.setViewportView(textAreaDICB);
-		panel_5.setLayout(gl_panel_5);
-		
 		JLabel lblNewLabel_2 = new JLabel("Preventivni - kontrolni pregledi CB:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(339, 491, 271, 19);
 		frmKartonPacijenta.getContentPane().add(lblNewLabel_2);
-		
-		JPanel panel_6 = new JPanel();
-		panel_6.setBorder(new LineBorder(Color.GRAY));
-		panel_6.setBackground(Color.WHITE);
-		panel_6.setBounds(339, 518, 265, 65);
-		frmKartonPacijenta.getContentPane().add(panel_6);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
-		gl_panel_6.setHorizontalGroup(
-			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
-		);
-		gl_panel_6.setVerticalGroup(
-			gl_panel_6.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-		);
-		
-		JTextArea textAreaPrPCB = new JTextArea();
-		scrollPane_1.setViewportView(textAreaPrPCB);
-		panel_6.setLayout(gl_panel_6);
 		
 		JButton btnCuvanje = new JButton("\u010Cuvanje CB");
 		btnCuvanje.setForeground(new Color(255, 0, 0));
@@ -707,6 +644,18 @@ public class NKarton {
 		btnIstorija.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnIstorija.setBounds(669, 396, 169, 30);
 		frmKartonPacijenta.getContentPane().add(btnIstorija);
+		
+		List listDCB = new List();
+		listDCB.setBounds(339, 325, 265, 65);
+		frmKartonPacijenta.getContentPane().add(listDCB);
+		
+		List listDICB = new List();
+		listDICB.setBounds(339, 422, 265, 65);
+		frmKartonPacijenta.getContentPane().add(listDICB);
+		
+		List listPrPCB = new List();
+		listPrPCB.setBounds(339, 516, 265, 65);
+		frmKartonPacijenta.getContentPane().add(listPrPCB);
 		
 		btnOdrediDijagnozuCb.addActionListener(new ActionListener() {
 			
@@ -751,9 +700,9 @@ public class NKarton {
 					CbrApplication cbr=(CbrApplication)recommender;
 					
 					
-					textAreaDCB.setText(cbr.getDijagnoza());
-					textAreaDICB.setText(cbr.getDaljaIspitivanja());
-					textAreaPrPCB.setText(cbr.getPreventivniPregledi());
+				//	textAreaDCB.setText(cbr.getDijagnoza());
+				//	textAreaDICB.setText(cbr.getDaljaIspitivanja());
+				//	textAreaPrPCB.setText(cbr.getPreventivniPregledi());
 					
 				
 				} catch (Exception e1) {
@@ -784,13 +733,13 @@ public class NKarton {
 				dp=dp.substring(0, dp.length() - 1);
 				
 				
-				String dijagnoza=textAreaDCB.getSelectedText();
-				String daljaispitivanje=textAreaDICB.getSelectedText();
-				String preventivnipregledi=textAreaPrPCB.getSelectedText();
+				//String dijagnoza=textAreaDCB.getSelectedText();
+				//String daljaispitivanje=textAreaDICB.getSelectedText();
+				//String preventivnipregledi=textAreaPrPCB.getSelectedText();
 				
-				String upisUcenje=simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
+			//	String upisUcenje=simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
 				
-				System.out.println(upisUcenje);
+				//System.out.println(upisUcenje);
 				
 				File file = new File("bazaBolesti.csv");
 	    	    FileWriter fr;
@@ -799,7 +748,7 @@ public class NKarton {
 					BufferedWriter br = new BufferedWriter(fr);
 		    	    PrintWriter pr = new PrintWriter(br);
 		    	    
-		    	    pr.println(upisUcenje);
+		 //   	    pr.println(upisUcenje);
 		    	    pr.close();
 		    	    br.close();
 		    	    fr.close();
