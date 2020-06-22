@@ -699,6 +699,10 @@ public class NKarton {
 					
 					CbrApplication cbr=(CbrApplication)recommender;
 					
+					listDCB.removeAll();
+					listDICB.removeAll();
+					listPrPCB.removeAll();
+					
 					for (String d : cbr.getDijagnoza()) {
 						listDCB.add(d);
 					}
@@ -739,13 +743,13 @@ public class NKarton {
 				dp=dp.substring(0, dp.length() - 1);
 				
 				
-				//String dijagnoza=textAreaDCB.getSelectedText();
-				//String daljaispitivanje=textAreaDICB.getSelectedText();
-				//String preventivnipregledi=textAreaPrPCB.getSelectedText();
+				String dijagnoza=listDCB.getSelectedItem().split("-")[0].substring(2);				
+				String daljaispitivanje=listDICB.getSelectedItem().substring(2);
+				String preventivnipregledi=listPrPCB.getSelectedItem().substring(2);
 				
-			//	String upisUcenje=simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
+				String upisUcenje=simptomi+";"+dp+";"+dijagnoza+";"+daljaispitivanje+";"+preventivnipregledi;
 				
-				//System.out.println(upisUcenje);
+				System.out.println(dijagnoza);
 				
 				File file = new File("bazaBolesti.csv");
 	    	    FileWriter fr;
@@ -754,7 +758,7 @@ public class NKarton {
 					BufferedWriter br = new BufferedWriter(fr);
 		    	    PrintWriter pr = new PrintWriter(br);
 		    	    
-		 //   	    pr.println(upisUcenje);
+		    	    pr.println(upisUcenje);
 		    	    pr.close();
 		    	    br.close();
 		    	    fr.close();
