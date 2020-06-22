@@ -703,16 +703,13 @@ public class NKarton {
 						listDCB.add(d);
 					}
 					
+					for (String di : cbr.getDaljaIspitivanja()) {
+						listDICB.add(di);
+					}
 					
-					
-					
-					
-					
-					
-				//	textAreaDCB.setText(cbr.getDijagnoza());
-				//	textAreaDICB.setText(cbr.getDaljaIspitivanja());
-				//	textAreaPrPCB.setText(cbr.getPreventivniPregledi());
-					
+					for (String pp : cbr.getPreventivniPregledi()) {
+						listPrPCB.add(pp);
+					}		
 				
 				} catch (Exception e1) {
 					e1.printStackTrace();

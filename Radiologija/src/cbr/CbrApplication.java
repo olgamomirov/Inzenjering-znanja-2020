@@ -25,25 +25,8 @@ import ucm.gaia.jcolibri.method.retrieve.selection.SelectCases;
 
 public class CbrApplication implements StandardCBRApplication {
 	private ArrayList<String> dijagnoza = new ArrayList<>();
-	private String daljaIspitivanja="";
-	private String preventivniPregledi="";
-	
-	public String getPreventivniPregledi() {
-		return preventivniPregledi;
-	}
-
-	public void setPreventivniPregledi(String preventivniPregledi) {
-		this.preventivniPregledi = preventivniPregledi;
-	}
-
-	public String getDaljaIspitivanja() {
-		return daljaIspitivanja;
-	}
-
-	public void setDaljaIspitivanja(String daljaIspitivanja) {
-		this.daljaIspitivanja = daljaIspitivanja;
-	}
-
+	private ArrayList<String> daljaIspitivanja = new ArrayList<String>();
+	private ArrayList<String> preventivniPregledi = new ArrayList<>();
 	
 
 	public ArrayList<String> getDijagnoza() {
@@ -53,6 +36,25 @@ public class CbrApplication implements StandardCBRApplication {
 	public void setDijagnoza(ArrayList<String> dijagnoza) {
 		this.dijagnoza = dijagnoza;
 	}
+
+
+	public ArrayList<String> getDaljaIspitivanja() {
+		return daljaIspitivanja;
+	}
+
+	public void setDaljaIspitivanja(ArrayList<String> daljaIspitivanja) {
+		this.daljaIspitivanja = daljaIspitivanja;
+	}
+
+	public ArrayList<String> getPreventivniPregledi() {
+		return preventivniPregledi;
+	}
+
+	public void setPreventivniPregledi(ArrayList<String> preventivniPregledi) {
+		this.preventivniPregledi = preventivniPregledi;
+	}
+
+
 
 
 
@@ -98,12 +100,13 @@ public class CbrApplication implements StandardCBRApplication {
 			System.out.println(nse.get_case().getDescription() + " -> " + nse.getEval());
 			PacijentDescriptor p=(PacijentDescriptor) nse.get_case().getDescription();
 			//System.out.println("verovatnoca je: "+nse.getEval()+"  za dijagnozu: "+ p.getDijagnoza());
-			String dijagproc=i+") "+p.getDijagnoza()+"->"+nse.getEval();
-			//dijagnoza+=dijagproc+"\n";
+			String dijagproc = i+") " + p.getDijagnoza()+"->"+nse.getEval();
+			String daljaisp = i+") " + p.getDaljaIspitivanja();
+			String pp = i+") " + p.getPreventivniPregledi();
+			
 			dijagnoza.add(dijagproc);
-		
-			daljaIspitivanja+=i+") "+p.getDaljaIspitivanja()+"\n";
-			preventivniPregledi+=i+") "+p.getPreventivniPregledi()+"\n";
+			daljaIspitivanja.add(daljaisp);
+			preventivniPregledi.add(pp);
 		}
 		
 		
